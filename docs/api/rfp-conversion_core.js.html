@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: rfp-conversion/core.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: rfp-conversion/core.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** @namespace */
+var RFP = window.RFP = window.RFP || {};
+/** @namespace */
+RFP.Conversion = RFP.Conversion || {};
+
+RFP.Conversion.Network = (function() {
+    /**
+     * @class
+     * @hideconstructor
+     * @memberOf RFP.Conversion
+     * @augments RFP.Common.NetworkBase
+     */
+    var Network = {};
+    var Util = RFP.Common.Util;
+    Network = Util.extend(Network, RFP.Common.NetworkBase);
+
+    /**
+     * Build conversion request URL
+     *
+     * @method buildConvRequestUrl
+     * @memberOf RFP.Conversion.Network
+     * @param {RFP.Conversion.ConvInfoModel} conv_info - Conversion info
+     * @param {object} page_url - Page URL
+     * @return {string} Conversion request URL
+     */
+    Network.buildConvRequestUrl = function(conv_info, page_url) {
+        var conf = RFP.Common.Config;
+        var info = conv_info.toObject();
+        var queries = [
+            'advertiser_id' + '=' + encodeURIComponent(info.advertiser_id),
+            'price' + '=' + encodeURIComponent(info.price),
+            'convtype' + '=' + encodeURIComponent(info.convtype),
+            'conv_dat' + '=' + encodeURIComponent(info.dat),
+            'url' + '=' + encodeURIComponent(page_url.get()),
+            'cachebuster' + '=' + this.makeCacheBuster()
+        ];
+        var url = conf.protocol + '//' + conf.host.conv + '/conv?' + queries.join('&amp;');
+        return url;
+    };
+
+    /**
+     * Send conversion
+     *
+     * @method sendConversion
+     * @memberOf RFP.Conversion.Network
+     * @param {object} conv_info - Conversion info
+     * @param {object} page_url - Page URL
+     */
+    Network.sendConversion = function(conv_info, page_url) {
+        var url = this.buildConvRequestUrl(conv_info, page_url);
+        this.sendBeaconRequest(url);
+    };
+
+    return Network;
+})();
+
+RFP.Conversion.ConvInfoModel = (function() {
+    var keys = [
+        'advertiser_id',
+        'price',
+        'convtype',
+        'dat'
+    ];
+
+    /**
+     * @constructor
+     * @memberOf RFP.Conversion
+     * @param {object} info - Info model
+     */
+    function ConvInfoModel(info) {
+        this.info = this.store(info);
+    }
+    var Util = RFP.Common.Util;
+
+    /**
+     * @param {object} info - Info model
+     * @return {object} Stored object
+     */
+    ConvInfoModel.prototype.store = function(info) {
+        var result = {};
+        Util.forEach(keys, function(key) {
+            /*jshint -W041*/
+            // allow not strict comparison to handle both `undefined` and `null`
+            result[key] = info[key] != undefined ? info[key] : '';
+        });
+
+        result = Util.objectSeal(result);
+        return result;
+    };
+
+    /**
+     * Return internal object
+     *
+     * @return {object} Internal object
+     */
+    ConvInfoModel.prototype.toObject = function() {
+        return this.info;
+    };
+
+    /**
+     * Validate model
+     *
+     * @return {boolean} true if valid
+     */
+    ConvInfoModel.prototype.isValid = function() {
+        var advertiser_id = this.info.advertiser_id;
+
+        if (!advertiser_id) {
+            return false;
+        }
+
+        if (!/^\d+$/.test(advertiser_id)) {
+            return false;
+        }
+
+        return true;
+    };
+
+    return ConvInfoModel;
+})();
+
+RFP.Conversion.PageUrl = (function() {
+    /**
+     * @constructor
+     * @memberOf RFP.Conversion
+     * @param {string} [url] - URL string
+     */
+    function PageUrl(url) {
+        this.url = url !== undefined ? url : this.detect();
+    }
+
+    /**
+     * Detect URL
+     *
+     * @return {string} detected URL
+     */
+    PageUrl.prototype.detect = function() {
+        var url = '';
+
+        // for the case the tag is embeded inside iframe, try to read parent document url
+        try {
+            url = parent.document.URL;
+        } catch (e) {
+            url = document.referrer;
+        }
+
+        return url;
+    };
+
+    /**
+     * Validate page url
+     *
+     * @return {boolean} true if valid
+     */
+    PageUrl.prototype.isValid = function() {
+        if (!this.url) {
+            return false;
+        }
+
+        if (/^file/.test(this.url)) {
+            return false;
+        }
+
+        return true;
+    };
+
+    /**
+     * Get URL from page
+     *
+     * @return {string} URL
+     */
+    PageUrl.prototype.get = function() {
+        return this.url;
+    };
+
+    return PageUrl;
+})();
+
+RFP.Conversion.Context = (function() {
+    var conf = RFP.Common.Config;
+
+    /**
+     * @class
+     * @memberOf RFP.Conversion
+     * @param {object} context - Context object
+     * @param {Array} context.queue - Queue
+     * @param {number} context.requested_count - Request count
+     * @param {object} context.sent_entry - Sent entry
+     */
+    function Context(context) {
+        this.context = context;
+        this.context.queue = this.context.queue || [];
+        this.context.requested_count = this.context.requested_count || 0;
+        this.context.sent_entry = this.context.sent_entry || {};
+    }
+
+    /**
+     * Return can send request
+     *
+     * @param {object} conv_info - Conversion info model
+     * @return {boolean} true if can send
+     */
+    Context.prototype.canSend = function(conv_info) {
+        if (this.context.requested_count >= conf.conv.max_request_per_page) {
+            return false;
+        }
+
+        var key = this._entryKey(conv_info);
+        if (this.context.sent_entry[key]) {
+            return false;
+        }
+
+        return true;
+    };
+
+    /**
+     * Update internal state
+     *
+     * @param {object} conv_info - Conversion info model
+     */
+    Context.prototype.update = function(conv_info) {
+        var key = this._entryKey(conv_info);
+        this.context.requested_count += 1;
+        this.context.sent_entry[key] = true;
+    };
+
+    /**
+     * Return queue
+     *
+     * @return {Array} queue
+     */
+    Context.prototype.getQueue = function() {
+        return this.context.queue;
+    };
+
+    // This method should be private, but defined as public for testing
+    Context.prototype._entryKey = function(conv_info) {
+        var key = [conv_info.toObject().advertiser_id,
+                   conv_info.toObject().convtype].join(':');
+        return key;
+    };
+
+    return Context;
+})();
+
+RFP.Conversion.Requester = (function() {
+    var Util = RFP.Common.Util;
+
+    /**
+     * @class
+     * @memberOf RFP.Conversion
+     * @param {RFP.Conversion.Context} context - Context object
+     * @param {RFP.Conversion.PageUrl} page_url - Page URL object
+     */
+    function Requester(context, page_url) {
+        this.context = context;
+        this.page_url = page_url;
+    }
+
+    /**
+     * Run conversion
+     */
+    Requester.prototype.run = function() {
+        var context = this.context;
+        var page_url = this.page_url;
+
+        if (!page_url.isValid()) {
+            return;
+        }
+
+        Util.forEach(context.getQueue(), function(entry) {
+            var conv_info = new RFP.Conversion.ConvInfoModel(entry);
+
+            if (!conv_info.isValid()) {
+                return;
+            }
+
+            if (!context.canSend(conv_info)) {
+                return;
+            }
+
+            RFP.Conversion.Network.sendConversion(conv_info, page_url);
+
+            context.update(conv_info);
+        });
+    };
+
+    return Requester;
+})();
+
+// entry point of this task. invocation code is in tmpl file
+function run() {
+    var context = new RFP.Conversion.Context(RFP.ConvContext || {});
+    var page_url = new RFP.Conversion.PageUrl();
+    var requester = new RFP.Conversion.Requester(context, page_url);
+    requester.run();
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Feb 16 2018 09:03:37 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

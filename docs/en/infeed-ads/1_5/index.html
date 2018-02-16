@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.35" />
+    <meta name="description" content="">
+
+
+    <link rel="shortcut icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
+
+    <title>Customized implementation :: RFP-JavaScript-SDK Docs</title>
+    
+    
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1518771816" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1518771816" rel="stylesheet">
+    
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1518771816" rel="stylesheet">
+    
+
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1518771816"></script>
+    
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{ 
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/RFP-JavaScript-SDK/en/infeed-ads/1_5/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://fout.github.io/RFP-JavaScript-SDK/en">
+    RFP-JavaScript-SDK Docs
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fa fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fa fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1518771816"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1518771816"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/RFP-JavaScript-SDK\/en";
+    
+</script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1518771816"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/RFP-JavaScript-SDK/en/infeed-ads/">
+          <b>1. </b>In-Feed Advertisement
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_1/" title="Getting Started" class="dd-item ">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_1/">
+        <b>1. </b>Getting Started
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_2/" title="Additional load of ads" class="dd-item ">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_2/">
+        <b>2. </b>Additional load of ads
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_3/" title="Shortening of the title of ads and description" class="dd-item ">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_3/">
+        <b>3. </b>Shortening of the title of ads and description
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_4/" title="Display ads faster" class="dd-item ">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_4/">
+        <b>4. </b>Display ads faster
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_5/" title="Customized implementation" class="dd-item active">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_5/">
+        <b>5. </b>Customized implementation
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_6/" title="Ads parameter" class="dd-item ">
+        <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_6/">
+        <b>6. </b>Ads parameter
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/RFP-JavaScript-SDK/en/dfp/">
+          <b>2. </b>For Using DFP (DoubleClick for Publisher)
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/RFP-JavaScript-SDK/en/namespace/">
+          <b>3. </b>Namespace
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fa fa-fw fa-language"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="ja" value="/RFP-JavaScript-SDK/infeed-ads/1_5/">日本語</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="en" value="/RFP-JavaScript-SDK/en/infeed-ads/1_5/" selected>English</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+       
+      
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Docs are generated by using <a href="http://gohugo.io/">Hugo</a>.</p>
+<p>Theme provided by <a href="https://github.com/matcornic/hugo-theme-learn/">hugo-theme-learn</a>.</p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/RFP-JavaScript-SDK/en/'>TOP</a> > <a href='/RFP-JavaScript-SDK/en/infeed-ads/'>In-Feed Advertisement</a> > Customized implementation
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#create-an-instance">Create an instance</a></li>
+<li><a href="#sending-ads-request">Sending ads request</a></li>
+<li><a href="#receiving-ads-content">Receiving ads content</a></li>
+<li><a href="#ads-display">Ads display</a></li>
+<li><a href="#sending-notification-of-ads-impression">Sending notification of ads impression</a></li>
+<li><a href="#additional-loading">Additional Loading</a></li>
+<li><a href="#example-of-implementation">Example of implementation</a></li>
+<li><a href="#attention">Attention</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Customized implementation</h1>
+          
+
+        
+
+
+
+
+<p>Using <code>raw API</code> of JavaScript SDK, calling and rendering ads are available in the intended timing. Using the following explanation of API, extra implementation is needed.</p>
+
+<p><a name="infeed/custom/instance"></a></p>
+
+<h3 id="create-an-instance">Create an instance</h3>
+
+<p>Create an instance of controller class to manage ads. Assigning ad spots ID is necessary to have constructor.</p>
+
+<pre><code class="language-js">var ad_controller = new RFP.InFeed.AdController({ adspot_id: 'MjQzOjIw' });
+</code></pre>
+
+<p><a name="infeed/custom/load"></a></p>
+
+<h3 id="sending-ads-request">Sending ads request</h3>
+
+<p>Sending request of ads contents, and then get the information by using <code>loadAds()</code> method. Set down callback functions showed as argument after completed.</p>
+
+<p>The First argument of callback functions is returned error object. If it works well, it returns <code>null</code>.</p>
+
+<pre><code class="language-js">var on_ad_loaded = function(error) {
+  if (error) {
+    // error handling
+  }
+
+  // ...
+};
+
+ad_controller.loadAds(on_ad_loaded);
+</code></pre>
+
+<p><a name="infeed/custom/getads"></a></p>
+
+<h3 id="receiving-ads-content">Receiving ads content</h3>
+
+<p>It is possible to receive ads contents which was got from server by using <code>loadAds()</code> by using <code>getLoadedAds()</code> method.</p>
+
+<pre><code class="language-js">var ads = ad_controller.getLoadedAds();
+</code></pre>
+
+<p>A response value of <code>getLoadedAds()</code> is as below.</p>
+
+<pre><code class="language-js">[
+  {
+    &quot;title&quot;: &quot;testAd&quot;,
+    &quot;description&quot;: &quot;This is test ad.”
+    &quot;click_url&quot;: &quot;http://...&quot;,
+    &quot;main_image_url&quot;: &quot;http://...&quot;,
+    &quot;icon_image_url&quot;: &quot;http://...&quot;,
+    &quot;ad_id&quot;: 123,
+    &quot;displayed_advertiser&quot;: &quot;Provided by test advertiser&quot;,
+    &quot;optout&quot;: &quot;http://...&quot;,
+    &quot;optout_click&quot;: &quot; onClick=...&quot;
+  },
+  ...
+]
+</code></pre>
+
+<p>If you want to know about more details of each parameter, please refer to <a href="../1_6">clause of ads parameter</a>.</p>
+
+<p><a name="infeed/custom/display"></a></p>
+
+<h3 id="ads-display">Ads display</h3>
+
+<p>You can show ads recieved by using <code>getLoadedAds()</code>. It needs to manage display processing.</p>
+
+<p><a name="infeed/custom/imp"></a></p>
+
+<h3 id="sending-notification-of-ads-impression">Sending notification of ads impression</h3>
+
+<p>After showing ads, it is necessary to notice impression by using <code>notifylmp()</code> and passing <code>ad_id</code> as parameter.</p>
+
+<pre><code class="language-js">var ad_id = ads[0].ad_id;
+ad_controller.notifyImp(ad_id);
+</code></pre>
+
+<p><a name="infeed/custom/additional_load"></a></p>
+
+<h3 id="additional-loading">Additional Loading</h3>
+
+<p>You can load more ads contents in case of reloaded feed.</p>
+
+<p>Every time calling for <code>loadAd()</code> method, you can get new ads content. <code>GetLoadedAds()</code> returns all of ads had been got so far.</p>
+
+<p>It needs to use an controller instance, at first. If you keep using the only one instance, duplicate advertisements are never returned.</p>
+
+<p><a name="infeed/custom/example"></a></p>
+
+<h3 id="example-of-implementation">Example of implementation</h3>
+
+<pre><code class="language-js">var ad_controller = new RFP.InFeed.AdController({ adspot_id: 'MjQzOjIw' });
+
+var on_ad_loaded = function(error) {
+  if (error) {
+    // Error handling
+  }
+
+  // Recieving
+  var ads = ad_controller.getLoadedAds();
+
+  ads.forEach(function(ad) {
+    // showing ads according to ads content
+    ShowAd(ad);
+
+    // Notification of Ads impression
+    var ad_id = ad.ad_id;
+    ad_controller.notifyImp(ad_id);
+  });
+};
+
+ad_controller.loadAds(on_ad_loaded);
+</code></pre>
+
+<p><a name="infeed/custom/caution"></a></p>
+
+<h3 id="attention">Attention</h3>
+
+<ul>
+<li>Every time reading pages, get ads contents from server. Please refrain from keep using cash that you had got.</li>
+<li>Ads contents you get from server are arranged to profitable order. It is better to show superior ads at the top.</li>
+</ul>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+        
+            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/en/infeed-ads/1_4/" title="Display ads faster"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/RFP-JavaScript-SDK/en/infeed-ads/1_6/" title="Ads parameter" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1518771816"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1518771816"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1518771816"></script>
+
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1518771816" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1518771816"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

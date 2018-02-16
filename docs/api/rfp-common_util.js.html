@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: rfp-common/util.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: rfp-common/util.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** @namespace */
+var RFP = typeof window.RFP === 'undefined' ? {} : window.RFP;
+window.RFP = RFP;
+/** @namespace */
+RFP.Common = typeof window.RFP.Common === 'undefined' ? {} : window.RFP.Common;
+
+RFP.Common.Util = (function() {
+    /**
+     * @class
+     * @hideconstructor
+     * @memberOf RFP.Common
+     */
+    var Util = {};
+
+    /**
+     * Apply callback on array
+     *
+     * @param {array} array - Array
+     * @param {function} callback - Callback function
+     * @param {object} this_arg - this
+     */
+    Util.forEach = function(array, callback, this_arg) {
+        if (Array.prototype.forEach) {
+            return Array.prototype.forEach.call(array, callback, this_arg);
+        }
+
+        if (typeof array === 'undefined') {
+            throw new TypeError();
+        }
+        if (typeof callback !== 'function') {
+            throw new TypeError();
+        }
+        var len = array.length >>> 0;
+        for (var i = 0; i &lt; len; i++) {
+            if (i in array) {
+                callback.call(this_arg, array[i], i, array);
+            }
+        }
+    };
+
+    /**
+     * Return array evaluted callback
+     *
+     * @param {Array} array - Target array
+     * @param {function} callback - Callback function
+     * @param {object} this_arg - this
+     * @return {Array} evaluted array
+     * @throws {TypeError} Invalid array or callback
+     */
+    Util.map = function(array, callback, this_arg) {
+        if (Array.prototype.map) {
+            return Array.prototype.map.call(array, callback, this_arg);
+        }
+
+        if (typeof array === 'undefined') {
+            throw new TypeError();
+        }
+        if (typeof callback !== 'function') {
+            throw new TypeError();
+        }
+        var len = array.length >>> 0;
+        var res = [];
+        for (var i = 0; i &lt; len; i++) {
+            if (i in array) {
+                res[i] = callback.call(this_arg, array[i], i, array);
+            }
+        }
+
+        return res;
+    };
+
+    /**
+     * Seal object (if possible)
+     *
+     * @param {object} obj - Target object
+     * @return {object} Sealed object if possible
+     */
+    Util.objectSeal = function(obj) {
+        if (Object.seal) {
+            return Object.seal(obj);
+        }
+
+        return obj;
+    };
+
+    /**
+     * Parse JSON
+     *
+     * @param {string} json_str - Target string
+     * @return {object} Parsed object
+     */
+    Util.jsonParse = function(json_str) {
+        /*jshint -W061 */
+        if (window.JSON) {
+            return window.JSON.parse(json_str);
+        }
+
+        return eval('(' + json_str + ')');
+    };
+
+    /**
+     * Apply callback when DOM ready
+     *
+     * @param {function} callback - Callback function
+     */
+    Util.waitDomReady = function(callback) {
+        var is_loaded = false;
+
+        if (document.readyState === 'complete' || document.readyState === 'loaded') {
+            callback();
+            return;
+        }
+
+        if (document.addEventListener){
+            document.addEventListener('DOMContentLoaded',function(){
+                callback();
+                is_loaded = true;
+            }, false);
+            window.addEventListener('load', function(){
+                if (!is_loaded) callback();
+            }, false);
+        } else if (window.attachEvent) {
+            if (window.ActiveXObject &amp;&amp; window === window.top) {
+                _ie();
+            } else {
+                window.attachEvent('onload', callback);
+            }
+        } else {
+            var _onload = window.onload;
+            window.onload = function(){
+                if (typeof _onload === 'function') {
+                    _onload();
+                }
+                callback();
+            };
+        }
+
+        function _ie(){
+            try {
+                document.documentElement.doScroll('left');
+            } catch (e) {
+                setTimeout(_ie, 0);
+                return;
+            }
+            callback();
+        }
+    };
+
+    /**
+     * Extend object
+     *
+     * @param {object} dst - Destination object
+     * @param {object} src - Source object
+     * @return {object} Extended object
+     */
+    Util.extend = function(dst, src) {
+        for (var prop in src) {
+            dst[prop] = src[prop];
+        }
+        return dst;
+    };
+
+    /**
+     * Inherits object
+     *
+     * @param {object} sub - Sub object
+     * @param {object} sup - Super object
+     * @return {object} Extended object
+     */
+    Util.inherits = function inherits(sub, sup) {
+        var F = function F () {};
+        F.prototype = sup.prototype;
+        sub.prototype = new F();
+        sub.prototype.constructor = sub;
+        sub.baseConstructor = sup;
+    };
+
+    /**
+     * Return argument is object
+     *
+     * @param {*} obj - wants to inspect
+     * @return {boolean} true if object
+     */
+    Util.isObject = function(obj) {
+        var type = typeof obj;
+        return type === 'function' || type === 'object' &amp;&amp; !!obj;
+    };
+
+    /**
+     * Return argument is function
+     *
+     * @param {*} obj - wants to inspect
+     * @return {boolean} true if function
+     */
+    Util.isFunction = function(obj) {
+        return Object.prototype.toString.call(obj) === '[object Function]';
+    };
+
+    /**
+     * Return argument is array
+     *
+     * @param {*} obj - wants to inspect
+     * @return {boolean} true if array
+     */
+    Util.isArray = function(obj) {
+        return Object.prototype.toString.call(obj) === '[object Array]';
+    };
+
+    /**
+     * Create throttled function
+     *
+     * @param {function} func - function to throttle
+     * @param {number} [wait=0] - throttle invocations to (ms)
+     */
+    Util.throttle = function(func, wait) {
+        var self = this;
+        wait = +wait || 0;
+        var time = Date.now();
+        return function() {
+            if ((time + wait - Date.now()) &lt; 0) {
+                func.apply(self);
+                time = Date.now();
+            }
+        };
+    };
+
+    var handlers = {};
+    var signals = {};
+
+    /**
+     * Set event handler
+     *
+     * @param {string} event - event name
+     * @param {function} handler - handler on receive event
+     */
+    Util.on = function(event, handler) {
+        if (!handlers[event]) {
+            handlers[event] = [];
+        }
+        handlers[event].push(handler);
+    };
+
+    /**
+     * Set event handler (only once)
+     *
+     * @param {string} event - event name
+     * @param {function} handler - handler on receive event
+     */
+    Util.one = function(event, handler) {
+        if (!signals[event]) {
+            signals[event] = [];
+        }
+        signals[event].push(handler);
+    };
+
+    /**
+     * Emit event
+     *
+     * @param {string} event - event name
+     * @param {HTMLElement} element - target element
+     */
+    Util.emit = function(event, element) {
+        if (signals[event]) {
+            while (signals[event].length) {
+                signals[event].pop()(element);
+            }
+        }
+        if (handlers[event]) {
+            var length = handlers[event].length;
+            while (--length > -1) {
+                handlers[event][length](element);
+            }
+        }
+    };
+
+    /**
+     * Check if element is in viewpot
+     *
+     * @param {HTMLElement} element - target element
+     * @param {number} threshold - ratio needs to in-view (0-1)
+     * @return {boolean} true if in-view
+     */
+    Util.inView = function(element, threshold) {
+        // Rect
+        var r = element.getBoundingClientRect();
+        // Intersection
+        var i = {
+            t: r.bottom,
+            r: window.innerWidth - r.left,
+            b: window.innerHeight - r.top,
+            l: r.right
+        };
+        // Threshold
+        var t = {
+            x: threshold * r.width,
+            y: threshold * r.height
+        };
+
+        return i.t > t.y
+            &amp;&amp; i.r > t.x
+            &amp;&amp; i.b > t.y
+            &amp;&amp; i.l > t.x;
+    };
+
+    var InViewObserver = {
+        elements: []
+    };
+
+    /**
+     * Add element in observing list
+     *
+     * @param {HTMLElement} el - target element
+     */
+    InViewObserver.addElement = function(el) {
+        if (InViewObserver.elements.indexOf(el) &lt; 0) {
+            InViewObserver.elements.push(el);
+        }
+    };
+
+    /**
+     * Remove element from observing list
+     *
+     * @param {HTMLElement} el - target element
+     */
+    InViewObserver.removeElement = function(el) {
+        var pos = InViewObserver.elements.indexOf(el);
+        if (pos >= 0) {
+            InViewObserver.elements.splice(pos, 1);
+        }
+    };
+
+    /**
+     * Observe element in-view
+     *
+     * element in-view then emit `enter` message,
+     * element out-view then emit `exit` message.
+     *
+     * @param {number} [interval=0] - Observation interval
+     * @param {number} [threshold=1] - In-View Threshold (0-1)
+     */
+    InViewObserver.observe = function(interval, threshold) {
+        interval = +interval || 0;
+        threshold = +threshold || 1;
+
+        var inViewElements = [];
+
+        var check = function() {
+            InViewObserver.elements.forEach(function(el) {
+                var passes = Util.inView(el, threshold);
+                var index = inViewElements.indexOf(el);
+                var current = index > -1;
+                var entered = passes &amp;&amp; !current;
+                var exited = !passes &amp;&amp; current;
+                if (entered) {
+                    inViewElements.push(el);
+                    Util.emit('enter', el);
+                }
+                if (exited) {
+                    inViewElements.splice(index, 1);
+                    Util.emit('exit', el);
+                }
+            });
+        };
+
+        ['scroll', 'resize', 'load'].forEach(function(event) {
+            addEventListener(event, Util.throttle(check, interval));
+        });
+
+        if (window.MutationObserver) {
+            addEventListener('DOMContentLoaded', function() {
+                new MutationObserver(Util.throttle(check, interval))
+                    .observe(document.body, {attributes: true, childList: true, subtree: true});
+            });
+        }
+    };
+
+    Util.InViewObserver = InViewObserver;
+
+    return Util;
+})();
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Feb 16 2018 09:03:37 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

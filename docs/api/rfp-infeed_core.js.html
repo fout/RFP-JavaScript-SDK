@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: rfp-infeed/core.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: rfp-infeed/core.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** @namespace */
+var RFP = typeof window.RFP === 'undefined' ? {} : window.RFP;
+window.RFP = RFP;
+/** @namespace */
+RFP.InFeed = typeof window.RFP.InFeed === 'undefined' ? {} : window.RFP.InFeed;
+
+RFP.InFeed.Template = (function() {
+    /**
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @param {string} template_str - Template string
+     */
+    function Template(template_str) {
+        this.template_str = template_str;
+        this.tag_open = '{{';
+        this.tag_close = '}}';
+    }
+
+    /**
+     * Render template
+     *
+     * @param {object} vars - Template parameters
+     * @return {string} rendered string
+     */
+    Template.prototype.render = function(vars){
+        var template_str = this.template_str;
+        for (var phrase in vars) {
+            template_str = template_str.replace(
+                new RegExp(this.tag_open + phrase + this.tag_close, 'g'),
+                vars[phrase]
+            );
+        }
+        return template_str;
+    };
+
+    return Template;
+})();
+
+RFP.InFeed.Network = (function() {
+    var Network = {};
+    var Util = RFP.Common.Util;
+    /**
+     * @class
+     * @hideconstructor
+     * @memberOf RFP.InFeed
+     * @augments RFP.Common.NetworkAd
+     */
+    Network = Util.extend(Network, RFP.Common.NetworkAd);
+
+    /**
+     * Fetch InFeed Ads
+     *
+     * @param {string} adspot_id - Ad Spot ID
+     * @param {number} sequence - sequence
+     * @param {function} callback - Callback function
+     */
+    Network.fetchInFeedAds = function(adspot_id, sequence, callback) {
+        var url = this.buildInFeedAdRequestUrl(adspot_id, sequence);
+        this.fetchAds(url, adspot_id, RFP.InFeed.AdInfoModel, callback);
+    };
+
+    /**
+     * Build InFeed Ad Request URL
+     *
+     * @param {string} adspot_id - Ad Spot ID
+     * @param {number} sequence - sequence
+     * @return {string} InFeed Ad Request URL
+     */
+    Network.buildInFeedAdRequestUrl = function(adspot_id, sequence) {
+        var conf = RFP.Common.Config;
+        var media_url = '';
+        try {
+            if (window == parent) {
+                media_url = parent.document.URL;
+            } else {
+                media_url = document.referrer;
+            }
+        } catch(e) {
+            media_url = document.referrer;
+        }
+        var queries = [
+            'adspot_id' + '=' + encodeURIComponent(adspot_id),
+            'ad_type' + '=' + conf.ad_type.infeed,
+            'sequence' + '=' + sequence,
+            'cachebuster' + '=' + this.makeCacheBuster(),
+            'sdk_version' + '=' + conf.version,
+            'media_url' + '=' + encodeURIComponent(media_url)
+        ];
+        return this.buildAdRequestUrl(queries);
+    };
+
+    /**
+     * Nofity third party impression
+     *
+     * @param {Object} ad_info - Ad Info
+     */
+    Network.notifyTpImp = function(ad_info) {
+        var info        = ad_info.toObject();
+        var tp_imp_urls = info.tp_imp_urls;
+
+        if (!tp_imp_urls) return;
+        if (!Util.isArray(tp_imp_urls)) return;
+        if (tp_imp_urls.length === 0) return;
+
+        var that = this;
+        Util.forEach(tp_imp_urls, function(url) {
+            that.sendBeaconRequest(url);
+        });
+    };
+
+    return Network;
+})();
+
+RFP.InFeed.AdInfoModel = (function() {
+    var keys = [
+        'main_image_url',
+        'icon_image_url',
+        'displayed_advertiser',
+        'tp_imp_urls'
+    ];
+    var public_keys = [
+        'title', 'description', 'click_url', 'ad_id',
+        'icon_image_url', 'main_image_url', 'displayed_advertiser',
+        'optout', 'optout_click'
+    ];
+
+    /**
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @augments RFP.Common.AdInfoModelBase
+     * @param {object} info - Ad info model
+     * @param {string} adspot_id - Ad Spot ID
+     */
+    function AdInfoModel(info, adspot_id) {
+        AdInfoModel.baseConstructor.call(this, info, adspot_id);
+        this.info = this.storeExtended(info);
+    }
+
+    var Util = RFP.Common.Util;
+    Util.inherits(AdInfoModel, RFP.Common.AdInfoModelBase);
+
+    /**
+     * @param {object} info - Ad Info Model
+     * @param {string} adspot_id - Ad Spot ID
+     * @return {object} sealed object
+     */
+    AdInfoModel.prototype.storeExtended = function(info, adspot_id) {
+        var result = this.base_info;
+        Util.forEach(keys, function(key) {
+            result[key] = info[key];
+        });
+
+        result = Util.objectSeal(result);
+        return result;
+    };
+
+    /**
+     * @return {object} Internal Ad Info Model
+     */
+    AdInfoModel.prototype.toObject = function() {
+        return this.info;
+    };
+
+    /**
+     * @return {object} Internal Ad Info Model (public member only)
+     */
+    AdInfoModel.prototype.toObjectWithPublicParams = function() {
+        var result = {};
+        var that = this;
+        Util.forEach(public_keys, function(key) {
+            result[key] = that.info[key];
+        });
+        return result;
+    };
+
+    return AdInfoModel;
+})();
+
+RFP.InFeed.PlacementInfoModel = (function() {
+    var keys = [
+        'adspot_id', 'template', 'title_length',
+        'description_length', 'displayed_advertiser_length'
+    ];
+    var Util = RFP.Common.Util;
+
+    /**
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @param {object} info - Ad info model
+     * @param {string} adspot_id - Ad Spot ID
+     */
+    function PlacementInfoModel(info, adspot_id) {
+        this.info = this.store(info, adspot_id);
+    }
+
+    /**
+     * @param {object} info - Ad Info Model
+     * @param {string} adspot_id - Ad Spot ID
+     * @return {object}
+     */
+    PlacementInfoModel.prototype.store = function(info, adspot_id) {
+        var result = {};
+        Util.forEach(keys, function(key) {
+            result[key] = info[key];
+        });
+        result.adspot_id = adspot_id;
+        return result;
+    };
+
+    /**
+     * @return {object} return internal info model
+     */
+    PlacementInfoModel.prototype.toObject = function() {
+        return this.info;
+    };
+
+    return PlacementInfoModel;
+})();
+
+RFP.InFeed.AdView = (function() {
+    var Util = RFP.Common.Util;
+
+    /**
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @param {Element} target - Target element
+     * @param {RFP.InFeed.Template} template_instance - Template instance
+     * @param {object} options - Options
+     * @param {function} options.before_render - Hook before render
+     * @param {string} options.adspot_id - Ad spot ID
+     * @param {boolean} options.use_wrapper - Use wrapper element
+     */
+    function AdView(target, template_instance, options) {
+        this.template = template_instance;
+        this.el = target;
+        this.options = Util.isObject(options) ? options : {};
+        this.showed = false;
+    }
+
+    /**
+     * @param {object} ad_info - Ad Info Model
+     * @param {object} placement_info - Placement Info Model
+     * @return {Node|HTMLCollection} Inserted Ad DOM
+     */
+    AdView.prototype.show = function(ad_info, placement_info) {
+        if (!this.el.parentNode) {
+            if (window.console &amp;&amp; typeof console.info === 'function') {
+                console.info('The ad place not found. Multiple loading tag may have been placed at same page.');
+            }
+            return;
+        }
+        if (Util.isFunction(this.options.before_render)) {
+            ad_info = this.options.before_render(ad_info, placement_info);
+        }
+        var ad_html = this.template.render(ad_info);
+        var ad_doms = this.buildHtmlDomList(ad_html);
+        var inserted = this.swapTagToAd(ad_doms);
+        this.showed = true;
+        return inserted;
+    };
+
+    /**
+     * @param {string} html - HTML string
+     * @return {HTMLCollection} DOM list
+     */
+    AdView.prototype.buildHtmlDomList = function(html) {
+        var dummy_element = document.createElement('div');
+        dummy_element.innerHTML = html;
+        return dummy_element.children;
+    };
+
+    /**
+     * Swap tag to ad
+     *
+     * @param {HTMLCollection} ad_doms - Ad DOMs
+     * @return {Node|HTMLCollection} Inserted Ad DOM
+     */
+    AdView.prototype.swapTagToAd = function(ad_doms) {
+        var i, n = ad_doms.length;
+        var inserted;
+        if (!this.options.use_wrapper) {
+            for (i = 0; i &lt; n; i++) {
+                this.el.parentNode.insertBefore(ad_doms[i].cloneNode(true), this.el);
+            }
+            inserted = this.el.parentNode.children;
+
+        } else {
+            if (n > 1) {
+                var wrapper = document.createElement('div');
+                for (i = 0; i &lt; n; i++) {
+                    wrapper.appendChild(ad_doms[i].cloneNode(true));
+                }
+                inserted = this.el.parentNode.insertBefore(wrapper, this.el);
+            } else {
+                inserted = this.el.parentNode.insertBefore(ad_doms[0].cloneNode(true), this.el);
+            }
+        }
+
+        this.el.parentNode.removeChild(this.el);
+
+        return inserted;
+    };
+
+    return AdView;
+})();
+
+RFP.InFeed.PassbackAdView = (function() {
+    /**
+     * AdView for Passback
+     *
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @param {Element} target - Target element
+     * @param {string} tag - Passback tag
+     */
+    function PassbackAdView(target, tag) {
+        this.el = target;
+        this.tag = tag;
+        this.showed = false;
+    }
+
+    /**
+     * Show ad in view
+     */
+    PassbackAdView.prototype.show = function() {
+        if (!this.el.parentNode) { // root element
+            if (window.console &amp;&amp; typeof console.info === 'function') {
+                console.info('The ad place not found. Multiple loading tag may have been placed at same page.');
+            }
+            return;
+        }
+        var ad_doms = this.buildHtmlDomList(this.tag);
+        this.swapTagToAd(ad_doms);
+        this.showed = true;
+    };
+
+    /**
+     * Build DOM from HTML tag
+     *
+     * @param {string} html - HTML string
+     * @return {HTMLCollection} DOM list
+     */
+    PassbackAdView.prototype.buildHtmlDomList = function(html) {
+        var dummy_element = document.createElement('div');
+        dummy_element.innerHTML = html;
+        return dummy_element.children;
+    };
+
+    /**
+     * Swap tag to ad
+     *
+     * @param {HTMLCollection} ad_doms - Ad DOMs
+     */
+    PassbackAdView.prototype.swapTagToAd = function(ad_doms) {
+        var i, n = ad_doms.length;
+        var hasScript = false;
+        for (i = 0; i &lt; n; i++) {
+            var element = ad_doms[i];
+            if (element.tagName.toLowerCase() === 'script') {
+                hasScript = true;
+            }
+        }
+        if (hasScript) {
+            // Create Friendly iFrame
+            var el = document.createElement('iframe');
+            el.onload = function() {
+                var h = this.contentWindow.document.documentElement.scrollHeight;
+                if (h > 0) {
+                    this.height = h;
+                }
+                var w = this.contentWindow.document.documentElement.scrollWidth;
+                if (w > 0) {
+                    this.width = w;
+                }
+            };
+            el.width = '100%';
+            el.frameBorder = '0';
+            el.scrolling = 'no';
+            el.marginWidth = 0;
+            el.marginHeight = 0;
+            el.src = 'javascript:false';
+
+            // Insert friendly iframe
+            this.el.parentNode.insertBefore(el, this.el);
+
+            // Generate content HTML
+            var html = '&lt;!DOCTYPE html>';
+            html += '&lt;html>';
+            html += '&lt;head>';
+            html += '&lt;meta charset="UTF-8" />';
+            html += '&lt;base target="_top" />';
+            html += '&lt;/head>';
+            html += '&lt;body>';
+            html += '&lt;script>inDapIF = true;&lt;/script>';
+            for (i = 0; i &lt; n; i++) {
+                var element = ad_doms[i];
+                html += element.outerHTML;
+            }
+            html += '&lt;/body>';
+            html += '&lt;/html>';
+
+            // Write HTML
+            var d = el.contentWindow.document;
+            d.open();
+            d.write(html);
+            d.close();
+
+        } else {
+            for (i = 0; i &lt; n; i++) {
+                var element = ad_doms[i];
+                this.el.parentNode.insertBefore(element.cloneNode(true), this.el);
+            }
+        }
+
+        // Remove original element
+        this.el.parentNode.removeChild(this.el);
+    };
+
+    return PassbackAdView;
+})();
+
+RFP.InFeed.AdController = (function() {
+    var Util = RFP.Common.Util;
+
+    /**
+     * @constructor
+     * @memberOf RFP.InFeed
+     * @param {object} args - Initialize parameters
+     */
+    function AdController(args) {
+        if (!args || !args.adspot_id) {
+            throw new TypeError('adspot_id is required');
+        }
+
+        this.adspot_id = args.adspot_id;
+        this.loaded_ads = [];
+        this.raw_res = null;
+        this.placement_info = {};
+        this.request_sequence = 0;
+    }
+
+    /**
+     * @private
+     * @param {Array} loaded_ads - Loaded ads
+     * @param {string} ad_id - Ad ID
+     */
+    function _getAdInfoById(loaded_ads, ad_id) {
+        for (var i = 0, n = loaded_ads.length; i &lt; n; i++) {
+            if (loaded_ads[i].toObject().ad_id === ad_id) {
+                return loaded_ads[i];
+            }
+        }
+    }
+
+    /**
+     * Load Ads
+     *
+     * @param {Function} callback - Callback function
+     */
+    AdController.prototype.loadAds = function(callback) {
+        var that = this;
+        if (typeof callback === 'undefined') {
+            callback = function noop() {};
+        }
+
+        var adspot_id = this.adspot_id;
+        var seq = this.request_sequence;
+        RFP.InFeed.Network.fetchInFeedAds(adspot_id, seq, function(error, ads, raw_res) {
+            if (error) {
+                callback(error);
+                return;
+            }
+            var placement_info = new RFP.InFeed.PlacementInfoModel(raw_res, adspot_id);
+
+            that.loaded_ads = that.loaded_ads.concat(ads);
+            that.request_sequence++;
+            that.placement_info = placement_info;
+            that.raw_res = raw_res;
+
+            callback(null);
+        });
+    };
+
+    /**
+     * Notify impression
+     *
+     * @param {string} ad_id - Ad ID
+     */
+    AdController.prototype.notifyImp = function(ad_id) {
+        if (!ad_id || ad_id == '0' || (!parseInt(ad_id, 10) &amp;&amp; typeof ad_id !== 'string')) {
+            throw new TypeError('ad_id is required');
+        }
+
+        var ad_info = _getAdInfoById(this.loaded_ads, ad_id);
+        if (!ad_info) {
+            throw new TypeError('invalid ad id ' + ad_id);
+        }
+
+        RFP.InFeed.Network.notifyImp(this.adspot_id, ad_info);
+        RFP.InFeed.Network.notifyTpImp(ad_info);
+    };
+
+    /**
+     * Get loaded ads
+     *
+     * @return {Array} Ads
+     */
+    AdController.prototype.getLoadedAds = function() {
+        var ads = Util.map(this.loaded_ads, function(elm) {
+            return elm.toObjectWithPublicParams();
+        });
+        return ads;
+    };
+
+    /**
+     * Get placement info model
+     *
+     * @return {object} Placement info model
+     */
+    AdController.prototype.getPlacementInfo = function() {
+        if (!Util.isFunction(this.placement_info.toObject)) {
+            return {};
+        }
+        return this.placement_info.toObject();
+    };
+
+    /**
+     * Get raw response
+     *
+     * @return {string} Raw response
+     */
+    AdController.prototype.getRawRes = function() {
+        return this.raw_res;
+    };
+
+    /**
+     * Show ad
+     *
+     * @param {RFP.InFeed.AdView|RFP.InFeed.PassbackAdView} ad_view - Ad View
+     * @param {string} ad_id - Ad ID
+     */
+    AdController.prototype.showAd = function(ad_view, ad_id) {
+        if (ad_view instanceof RFP.InFeed.AdView) {
+            var ad_info_obj = _getAdInfoById(this.loaded_ads, ad_id);
+            if (!ad_info_obj) {
+                return;
+            }
+            var ad_info = ad_info_obj.toObjectWithPublicParams();
+            var placement_info = this.getPlacementInfo();
+            return ad_view.show(ad_info, placement_info);
+        } else if (ad_view instanceof RFP.InFeed.PassbackAdView) {
+            ad_view.show();
+        }
+    };
+
+    return AdController;
+})();
+
+/**
+ * @class
+ * @hideconstructor
+ */
+RFP.InFeed.Default = (function() {
+    var Default = {};
+    var Util = RFP.Common.Util;
+
+    /*
+     * @typedef {object} RFP.InFeed.Default~AdSpot
+     * @property {number} rendered_index - Rendered index
+     * @property {RFP.InFeed.AdController} controller - AdController instance
+     */
+
+    /*
+     * List of AdSpot
+     * @type {Array.&lt;AdSpot>}
+     */
+    var adspots = {};
+    var options = Default.options = {};
+
+    var firstTime = true;
+
+    /**
+     * Search ad places
+     *
+     * @private
+     * @return {Array.&lt;Element>} Matched elements
+     */
+    function _searchAdPlacesAll() {
+        if (document.querySelectorAll) {
+            return document.querySelectorAll('[data-rfp-adspot-id]');
+        }
+
+        var res = [];
+        var elms = document.body.getElementsByTagName('*');
+        var n = elms.length;
+        for (var i = 0; i &lt; n; i++) {
+            if (elms[i].getAttribute('data-rfp-adspot-id')) {
+                res.push(elms[i]);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Search ad places by Ad Spot ID
+     *
+     * @private
+     * @param {string} adspot_id
+     * @return {Array.&lt;Element>} Matched elements
+     */
+    function _searchAdPlacesByAdspotId(adspot_id) {
+        if (document.querySelectorAll) {
+            return document.querySelectorAll('[data-rfp-adspot-id=' + adspot_id + ']');
+        }
+
+        var res = [];
+        var elms = document.body.getElementsByTagName('*');
+        var n = elms.length;
+        for (var i = 0; i &lt; n; i++) {
+            var attr_id = elms[i].getAttribute('data-rfp-adspot-id') || '';
+            if (attr_id === adspot_id) {
+                res.push(elms[i]);
+            }
+        }
+        return res;
+    }
+
+    // 広告が表示されなかった ad place を表示候補場所の対象外とする
+    function _cleanAdPlaces(adspot_id) {
+        var places = _searchAdPlacesByAdspotId(adspot_id);
+        Util.forEach(places, function(place) {
+            place.removeAttribute('data-rfp-adspot-id');
+        });
+    }
+
+    /**
+     * Render ads
+     *
+     * @private
+     * @param {Array.&lt;Element>} ad_places - Ad places
+     * @param {string} adspot_id - Ad spot ID
+     */
+    function _renderAds(ad_places, adspot_id) {
+        var rendered_index = adspots[adspot_id].rendered_index;
+        var controller = adspots[adspot_id].controller;
+        var orig_ads = controller.getLoadedAds();
+        var ads = orig_ads.slice(rendered_index);
+        if (ads.length > 0) {
+            var ad_view_options = {
+                before_render: Default._makeCallbackOfBeforeRender(),
+                adspot_id: adspot_id
+            };
+            if (Default.options.viewable_impression) {
+                ad_view_options.use_wrapper = true;
+            }
+
+            // create template instance from template string of ad response or dom.
+            var template_string = controller.getPlacementInfo().template || _getTemplateStringByAdspotId(adspot_id);
+            var force_options = Default.options.force || {};
+            if (force_options.template) {
+                template_string = _getTemplateStringByAdspotId(adspot_id);
+            }
+            if (!template_string) {
+                return;
+            }
+            var template = new RFP.InFeed.Template(template_string);
+
+            for (var i = 0; i &lt; ads.length &amp;&amp; i &lt; ad_places.length; i++) {
+                var ad_id = ads[i].ad_id;
+                var place = ad_places[i];
+                var ad_view = new RFP.InFeed.AdView(place, template, ad_view_options);
+                var adElement = controller.showAd(ad_view, ad_id);
+                if (ad_view.showed) {
+                    if (!Default.options.viewable_impression) {
+                        controller.notifyImp(ad_id);
+                    } else {
+                        adElement.rfpNotifyImpression = function() {
+                            controller.notifyImp(ad_id);
+                        };
+                        Util.InViewObserver.addElement(adElement);
+                    }
+                }
+            }
+
+        } else {
+            var raw_res = controller.getRawRes();
+            var passback_tag = raw_res.passback_tag;
+            if (!passback_tag) {
+                return;
+            }
+
+            for (var i = 0; i &lt; ad_places.length; i++) {
+                var place = ad_places[i];
+                var ad_view = new RFP.InFeed.PassbackAdView(place, passback_tag);
+                controller.showAd(ad_view, ad_id);
+            }
+        }
+
+        // 古い案件が出ることを防ぐため、すべての案件を表示済とみなす
+        adspots[adspot_id].rendered_index = orig_ads.length;
+    }
+
+    function _setInViewHandler() {
+        Util.on('enter', function(el) {
+            if (el.rfpInViewTimerId) {
+                clearTimeout(el.rfpInViewTimerId);
+                delete el.rfpInViewTimerId;
+            }
+            el.rfpInViewTimerId = setTimeout(function() {
+                el.rfpNotifyImpression();
+                delete el.rfpNotifyImpression;
+                delete el.rfpInViewTimerId;
+                Util.InViewObserver.removeElement(el);
+            }, 1000);
+        });
+        Util.on('exit', function(el) {
+            if (el.rfpInViewTimerId) {
+                clearTimeout(el.rfpInViewTimerId);
+                delete el.rfpInViewTimerId;
+            }
+        });
+    }
+
+    function _getTemplateStringByAdspotId(adspot_id) {
+        var elements = [], i, n;
+
+        if (document.querySelectorAll) {
+            elements = document.querySelectorAll('script[type="text/rfp-infeed-template"]');
+        } else {
+            var scripts = document.getElementsByTagName('script');
+            n = scripts.length;
+            for (i = 0; i &lt; n; i++) {
+                var type = scripts[i].getAttribute('type') || '';
+                if (type === 'text/rfp-infeed-template') {
+                    elements.push(scripts[i]);
+                }
+            }
+        }
+
+        n = elements.length;
+        for (i = 0; i &lt; n; i++) {
+            if (elements[i].getAttribute('data-adspot-id') === adspot_id) {
+                return elements[i].innerHTML;
+            }
+        }
+
+        return;
+    }
+
+    function _callSyncURLs(adspot_id) {
+        var controller = adspots[adspot_id].controller;
+        var raw_res = controller.getRawRes();
+        if (! raw_res) return;
+
+        RFP.InFeed.Network.callSyncURLs(raw_res);
+    }
+
+    function _makeCallbackOfLoadAds(ad_places, adspot_id) {
+        return function(error) {
+            if (error) {
+                return;
+            }
+            _renderAds(ad_places, adspot_id);
+            _cleanAdPlaces(adspot_id);
+            _callSyncURLs(adspot_id);
+        };
+    }
+
+    function _run() {
+        var found_placements = _searchAdPlacesAll();
+
+        // find ad placements, store these by adspot_id
+        var i, n, adspot_id;
+        var adspot_ids = [], placements_by_adspot_id = {};
+        n = found_placements.length;
+        for (i = 0; i &lt; n; i++) {
+            var placement = found_placements[i];
+            adspot_id = placement.getAttribute('data-rfp-adspot-id');
+            if (!adspot_id) {
+                continue;
+            }
+
+            if (!Util.isArray(placements_by_adspot_id[adspot_id])) {
+                placements_by_adspot_id[adspot_id] = [];
+                adspot_ids.push(adspot_id);
+            }
+
+            placements_by_adspot_id[adspot_id].push(placement);
+        }
+
+        // load and show ads for each adspot_id
+        n = adspot_ids.length;
+        for (i = 0; i &lt; n; i++) {
+            adspot_id = adspot_ids[i];
+            var ad_places = placements_by_adspot_id[adspot_id];
+
+            adspots[adspot_id] = {};
+            adspots[adspot_id].rendered_index = 0;
+            adspots[adspot_id].controller = new RFP.InFeed.AdController({adspot_id: adspot_id});
+            adspots[adspot_id].controller.loadAds(_makeCallbackOfLoadAds(ad_places, adspot_id));
+        }
+    }
+
+    /**
+     * Make callback of before render
+     *
+     * @private
+     * @function _makeCallbackOfBeforeRender
+     * @memberOf RFP.InFeed.Default
+     * @return {function} callback function
+     */
+    Default._makeCallbackOfBeforeRender = function() {
+        if (Util.isFunction(Default.options.before_render)) {
+            return Default.options.before_render;
+        }
+
+        var client_options = {
+            title_len: parseInt(Default.options.title_length, 10),
+            desc_len: parseInt(Default.options.description_length, 10),
+            advertiser_len: parseInt(Default.options.displayed_advertiser_length, 10),
+            force: Default.options.force || {}
+        };
+
+        return function(ad_info_hash, placement_info_hash) {
+            // parameters from server side has higher priority than one which from client side
+            var title_len = placement_info_hash.title_length || client_options.title_len;
+            var desc_len = placement_info_hash.description_length || client_options.desc_len;
+            var advertiser_len = placement_info_hash.displayed_advertiser_length || client_options.advertiser_len;
+
+            // force to use client options if client_options.force are set
+            if (client_options.force.title_length &amp;&amp; client_options.title_len) {
+                title_len = client_options.title_len;
+            }
+            if (client_options.force.description_length &amp;&amp; client_options.desc_len) {
+                desc_len = client_options.desc_len;
+            }
+            if (client_options.force.displayed_advertiser_length &amp;&amp; client_options.advertiser_len) {
+                advertiser_len = client_options.advertiser_len;
+            }
+
+            if (title_len || desc_len || advertiser_len) {
+                if (advertiser_len &lt; 11) {
+                    advertiser_len = 11;
+                }
+
+                if (title_len &lt; ad_info_hash.title.length) {
+                    ad_info_hash.title = ad_info_hash.title.substr(0, title_len - 1) + '\u2026';
+                }
+                if (desc_len &lt; ad_info_hash.description.length) {
+                    ad_info_hash.description = ad_info_hash.description.substr(0, desc_len - 1) + '\u2026';
+                }
+                if (advertiser_len &lt; ad_info_hash.displayed_advertiser.length) {
+                    ad_info_hash.displayed_advertiser = ad_info_hash.displayed_advertiser.substr(0, advertiser_len - 1) + '\u2026';
+                }
+            }
+
+            return ad_info_hash;
+        };
+    };
+
+    /**
+     * Run
+     *
+     * @function run
+     * @memberOf RFP.InFeed.Default
+     * @param {object} [options] - Run options
+     * @param {boolean} options.immediately - Run immediately
+     * @param {boolean} options.viewable_impression - Use viewable impression
+     */
+    Default.run = function() {
+        if (Util.isObject(arguments[0])) {
+            Default.options = arguments[0];
+        }
+
+        if (firstTime) {
+            if (Default.options.viewable_impression) {
+                _setInViewHandler();
+                // Observing 100ms interval, in-view -> 50%.
+                Util.InViewObserver.observe(100, 0.5);
+            }
+            firstTime = false;
+        }
+
+        if (Default.options.immediately) {
+            _run();
+        } else {
+            Util.waitDomReady(_run);
+        }
+    };
+
+    /**
+     * Reload ads
+     *
+     * @function reloadAds
+     * @memberOf RFP.InFeed.Default
+     */
+    Default.reloadAds = function() {
+        var adspot_id, processed_spots = 0;
+        for (adspot_id in adspots) {
+            if (adspots.hasOwnProperty(adspot_id)) {
+                var ad_places = _searchAdPlacesByAdspotId(adspot_id);
+                if (ad_places.length === 0) {
+                    return;
+                }
+
+                adspots[adspot_id].controller.loadAds(_makeCallbackOfLoadAds(ad_places, adspot_id));
+                processed_spots++;
+            }
+        }
+
+        if (processed_spots === 0) {
+            Default.run();
+            return;
+        }
+    };
+
+    return Default;
+})();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Feb 16 2018 09:03:37 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

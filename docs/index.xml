@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TOP on RFP-JavaScript-SDK Docs</title>
+    <link>https://fout.github.io/RFP-JavaScript-SDK/</link>
+    <description>Recent content in TOP on RFP-JavaScript-SDK Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    
+	<atom:link href="https://fout.github.io/RFP-JavaScript-SDK/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</guid>
+      <description>広告枠の登録 管理 UI から広告枠を登録します。事前に管理 UI へのアカウント開設が必要です。 広告テンプレートの入稿 管理 UI から広告テンプレートを入稿し</description>
+    </item>
+    
+    <item>
+      <title>広告の追加ロード</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/</guid>
+      <description>フィード型のサイトなどでユーザーがサイト下部に到達した際に追加フィードを読み込むような UI の場合に、追加で広告ロードを行うことも可能です。 フィ</description>
+    </item>
+    
+    <item>
+      <title>広告タイトル・説明文・表記広告主名の短縮</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/</guid>
+      <description>管理画面から設定することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。詳しくは管理画</description>
+    </item>
+    
+    <item>
+      <title>広告表示の高速化</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/</guid>
+      <description>immediately オプションを追加することで、広告が表示されるまでの速度を速めることができます。 以下は高速化のオプションを有効にする例です。 RFP.InFeed.Default.run({ immediately: true }); このオプ</description>
+    </item>
+    
+    <item>
+      <title>カスタム実装</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/</guid>
+      <description>SDK の raw API を使用し、広告の呼び出しやレンダリングなどを任意のタイミングで行うことも可能です。以下に説明する API を用いて、媒体様による追加の実装が</description>
+    </item>
+    
+    <item>
+      <title>広告パラメータ</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/</guid>
+      <description>パラメータ名 説明 例 title タイトル文言 TestAd description 説明・紹介文 テスト広告です。 click_url 広告クリック時の遷移先 URL http://click.example.com/... icon_image_url アイコン型の正方形画像の URL http://banner.dspcdn.com/... main_image_url バナー型の矩形画</description>
+    </item>
+    
+  </channel>
+</rss>

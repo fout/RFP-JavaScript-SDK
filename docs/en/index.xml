@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TOP on RFP-JavaScript-SDK Docs</title>
+    <link>https://fout.github.io/RFP-JavaScript-SDK/en/</link>
+    <description>Recent content in TOP on RFP-JavaScript-SDK Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    
+	<atom:link href="https://fout.github.io/RFP-JavaScript-SDK/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Started</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/</guid>
+      <description>Registration ad spot You set ad spots from admin UI. You need to set up your account to admin UI.
+
+Draft ad template You draft ad template from admin UI. Assign a placeholder by coding {{click_url}} as below and then the area is shown as ad spot.
+Please refer here to know which placeholders you can use.
+&amp;lt;div class=&amp;quot;article&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;icon&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;{{click_url}}&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;{{main_image_url}}&amp;quot; /&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;contents&amp;quot;&amp;gt; &amp;lt;h3&amp;gt;{{title}}&amp;lt;/h3&amp;gt; &amp;lt;p&amp;gt;&amp;lt;span {{optout_click}}&amp;gt;【PR】&amp;lt;/span&amp;gt;{{description}}&amp;lt;/p&amp;gt; &amp;lt;span class=&amp;quot;source&amp;quot;&amp;gt;{{displayed_advertiser}}&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Additional load of ads</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/</guid>
+      <description>Additional load of ads is available when user arrives the lower part of website and read extra feed (UI) on feed-typed website.
+ Include designating element of ad position, which is the same as initial state on DOM inserted when reading extra feed.  &amp;lt;div data-rfp-adspot-id=&amp;quot;MjQzOjIw&amp;quot; style=&amp;quot;display:none&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;   Call for RFP.InFeed.Default.reloadAds() method of SDK after reading extra feed. Acquire and display ads cases after calling.  // Example of function called after reading extra feed function onAdditionalFeedLoaded() { // .</description>
+    </item>
+    
+    <item>
+      <title>Shortening of the title of ads and description</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/</guid>
+      <description>If you configured at admin UI, you can reduce ad title, explanation and advertiser’s name in order to optimize for each media. Please refer to the UI manual for details.
+Editing by callback functions Giving the callback functions allows you to adjust the length of the string in your optional manner. Callback functions will be called right before displaying ads. The content of ads and location will be given as an argument.</description>
+    </item>
+    
+    <item>
+      <title>Display ads faster</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/</guid>
+      <description>You can enable immediately option to display ads faster.
+This below is an example to enable this option.
+RFP.InFeed.Default.run({ immediately: true });  The option is disabled if not specified.
+If immediately option is enabled, the ad loading and rendering process is executed immediately after RFP.InFeed.Default.run() function is called. For this reason, an ad call script must be inserted after the definition of ad template unit and elements of ad display position.</description>
+    </item>
+    
+    <item>
+      <title>Customized implementation</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/</guid>
+      <description>Using raw API of JavaScript SDK, calling and rendering ads are available in the intended timing. Using the following explanation of API, extra implementation is needed.
+
+Create an instance Create an instance of controller class to manage ads. Assigning ad spots ID is necessary to have constructor.
+var ad_controller = new RFP.InFeed.AdController({ adspot_id: &#39;MjQzOjIw&#39; });  
+Sending ads request Sending request of ads contents, and then get the information by using loadAds() method.</description>
+    </item>
+    
+    <item>
+      <title>Ads parameter</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</guid>
+      <description>Parameter name Explanation Example     title title words TestAd   description description This is an test ad.   click_url URL of transition destination when click the ads http://click.example.com/…   icon_image_url URL of icon style of quadrate picture http://banner.dspcdn.com/…   main_image_url URL of banner style rectangular picture http://banner.dspcdn.com/…   ad_id ID of ads content 123   displayed_advertiser Name of advertiser Provided by test advertiser   optout URL of optout http://example.</description>
+    </item>
+    
+  </channel>
+</rss>
