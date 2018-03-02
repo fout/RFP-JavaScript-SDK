@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: rfp-infeed/video.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: rfp-infeed/video.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/** @namespace */
+var RFP = typeof window.RFP === 'undefined' ? {} : window.RFP;
+window.RFP = RFP;
+/** @namespace */
+RFP.Video = typeof window.RFP.Video === 'undefined' ? {} : window.RFP.Video;
+
+RFP.Video.Player = (function() {
+    var Config = RFP.Common.Config;
+    var Util = RFP.Common.Util;
+    var throttle = Util.throttle;
+
+    // temporary
+    var emit = function(event, element) {
+        console.log(event);
+    };
+
+    var format = function(sec) {
+        sec = Math.floor(sec);
+        var m = Math.floor(sec / 60);
+        var s = sec % 60;
+        return ('0' + m).slice(-2) + ':' + ('0' + s).slice(-2);
+    };
+
+    var asset = function(name) {
+        return Config.protocol + '//' + Config.host.assets + '/' + name;
+    };
+
+    /**
+     * Video Player
+     *
+     * @class
+     * @hideconstructor
+     * @memberOf RFP.Video
+     * @param {object} model - Parsed VAST model
+     * @param {object} [options] - Options
+     */
+    var Player = function(model, options) {
+        this.model = model;
+        this.options = Util.isObject(options) ? options : {};
+    };
+
+    /**
+     * Attach to video ad element
+     *
+     * @param {HTMLElement} element - target element
+     */
+    Player.prototype.attach = function(element) {
+        this.firstTime = true;
+        this.completed = false;
+        this.timerId = undefined;
+
+        this.timelineEvent = {
+            start: 0,
+            firstQuartile: undefined,
+            midpoint: undefined,
+            thirdQuartile: undefined,
+            complete: undefined
+        };
+
+        // Setup elements
+
+        this.video = element.getElementsByTagName('video')[0];
+
+        if (this.options.debug) {
+            this.debug();
+        }
+
+        this.controls = element.getElementsByClassName('rfp-video-control-panel')[0];
+
+        this.progress = this.controls.getElementsByClassName('rfp-video-progress')[0];
+        this.durationText = this.controls.getElementsByClassName('rfp-video-duration')[0];
+        this.remainingText = this.controls.getElementsByClassName('rfp-video-remaining')[0];
+
+        this.playButton = this.controls.getElementsByClassName('rfp-video-play-button')[0];
+        this.volumeButton = this.controls.getElementsByClassName('rfp-video-volume-button')[0];
+        this.fullscreenButton = this.controls.getElementsByClassName('rfp-video-fullscreen-button')[0];
+
+        this.cover = element.getElementsByClassName('rfp-video-cover')[0];
+        this.replayButton = this.cover.getElementsByClassName('rfp-video-replay-button')[0];
+        this.navigateButton = this.cover.getElementsByClassName('rfp-video-navigate-button')[0];
+
+        // Initialize assets
+
+        this.playButton.getElementsByTagName('img')[0].src = asset('play.png');
+        this.volumeButton.getElementsByTagName('img')[0].src = asset('volume_up.png');
+        this.fullscreenButton.getElementsByTagName('img')[0].src = asset('fullscreen.png');
+        this.replayButton.getElementsByTagName('img')[0].src = asset('replay.png');
+        this.navigateButton.getElementsByTagName('img')[0].src = asset('launch.png');
+
+        // Setup event handlers
+
+        var self = this;
+
+        element.addEventListener('mouseenter', function() { self.showControls(); });
+        element.addEventListener('mouseleave', function() { self.hideControls(); });
+        element.addEventListener('mousemove', throttle(function() { self.showControls(); }, 100));
+
+        this.video.addEventListener('canplay', function() { self.handleCanPlay(); });
+        this.video.addEventListener('playing', function() { self.handlePlaying(); });
+        this.video.addEventListener('pause', function() { self.handlePause(); });
+        this.video.addEventListener('ended', function() { self.handleEnded(); });
+        this.video.addEventListener('timeupdate', function() { self.handleTimeUpdate(); });
+
+        this.playButton.addEventListener('click', function() { self.togglePlayState(); });
+        this.volumeButton.addEventListener('click', function() { self.toggleMuted(); });
+        this.fullscreenButton.addEventListener('click', function() { self.fullscreen(); });
+        this.replayButton.addEventListener('click', function() { self.handleReplayButtonClicked(); });
+
+        document.addEventListener('fullscreenerror', function() { console.log('fullscreenerror'); });
+        document.addEventListener('fullscreenchange', function() { self.handleFullscreenChange(); });
+        document.addEventListener('webkitfullscreenchange', function() { self.handleFullscreenChange(); });
+        document.addEventListener('mozfullscreenchange', function() { self.handleFullscreenChange(); });
+        document.addEventListener('MSFullscreenChange', function() { self.handleFullscreenChange(); });
+
+        //
+
+        var videoResource = this.extractVideoResource();
+        if (!videoResource) {
+            throw new Error('No video resource');
+        }
+        element.style.width = videoResource.width + 'px';
+        element.style.height = videoResource.height + 'px';
+        this.video.width = videoResource.width;
+        this.video.height = videoResource.height;
+        var sourceElement = document.createElement('source');
+        sourceElement.type = videoResource.creativeType;
+        sourceElement.src = videoResource.content;
+        this.video.appendChild(sourceElement);
+
+        //
+
+        var companionResource = this.extraceCompanionResource();
+        if (companionResource) {
+            var navigateButtonLabel = this.navigateButton.getElementsByTagName('span')[0];
+            navigateButtonLabel.textContent = companionResource.content;
+            this.navigateButton.addEventListener('click', function() {
+                window.open(companionResource.clickThrough);
+            });
+        } else {
+            this.navigateButton.visibility = 'hidden';
+        }
+    };
+
+    Player.prototype.debug = function() {
+        var video = this.video;
+        [
+            'emptied',
+            'seeking',
+            'loadstart',
+            'progress',
+            'canplay',
+            'play',
+            'playing',
+            //'timeupdate',
+            'waiting',
+            'pause',
+            'ended',
+            'loadmetadata',
+            'loadeddata',
+            'canplaythrough',
+            'ratechange',
+            'volumechange'
+        ].forEach(function(eventName) {
+            video.addEventListener(eventName, function() {
+                console.log(eventName);
+            });
+        });
+    };
+
+    Player.prototype.extractVideoResource = function() {
+        var ads = this.model.ads || [];
+        for (var i = 0; i &lt; ads.length; i++) {
+            var ad = ads[i];
+            var creatives = ad.creatives || [];
+            for (var j = 0; j &lt; creatives.length; j++) {
+                var creative = creatives[j];
+                if (creative.creativeType === 'NonLinearAds') {
+                    var resources = creative.ads || [];
+                    return resources[0];
+                }
+            }
+        }
+    };
+
+    Player.prototype.extraceCompanionResource = function() {
+        var ads = this.model.ads || [];
+        for (var i = 0; i &lt; ads.length; i++) {
+            var ad = ads[i];
+            var creatives = ad.creatives || [];
+            for (var j = 0; j &lt; creatives.length; j++) {
+                var creative = creatives[j];
+                if (creative.creativeType === 'CompanionAds') {
+                    var resources = creative.ads || [];
+                    return resources[0];
+                }
+            }
+        }
+    };
+
+    /**
+     * Show control panel
+     *
+     * @access private
+     * @param {boolean} stick - Stick panel if true
+     */
+    Player.prototype.showControls = function(stick) {
+        if (this.video.ended) {
+            return;
+        }
+        this.controls.style.visibility = 'visible';
+        if (this.timerId) {
+            clearTimeout(this.timerId);
+            this.timerId = undefined;
+        }
+        if (!stick) {
+            var self = this;
+            this.timerId = setTimeout(function() { self.hideControls(); }, 3000);
+        }
+    };
+
+    /**
+     * Hide control panel
+     *
+     * @access private
+     */
+    Player.prototype.hideControls = function() {
+        this.controls.style.visibility = 'hidden';
+        if (this.timerId) {
+            clearTimeout(this.timerId);
+            this.timerId = undefined;
+        }
+    };
+
+    /**
+     * Toggle play state
+     *
+     * @access private
+     */
+    Player.prototype.togglePlayState = function() {
+        if (this.video.paused) {
+            this.video.play();
+            if (typeof this.timelineEvent.start === 'number') {
+                emit('start');
+                this.timelineEvent.start = true;
+            } else {
+                emit('resume');
+            }
+        } else {
+            this.video.pause();
+            emit('pause');
+        }
+    };
+
+    /**
+     * Toggle muted
+     *
+     * @access private
+     */
+    Player.prototype.toggleMuted = function() {
+        this.video.muted = !this.video.muted;
+        var img = this.volumeButton.querySelector('img');
+        if (this.video.muted) {
+            img.src = asset('volume_off.png');
+            emit('mute');
+        } else {
+            img.src = asset('volume_up.png');
+            emit('unmute');
+        }
+    };
+
+    /**
+     * Fullscreen video element
+     *
+     * @access private
+     */
+    Player.prototype.fullscreen = function() {
+        if (this.video.webkitRequestFullscreen) {
+            this.video.webkitRequestFullscreen();
+        } else if (this.video.mozRequestFullScreen) {
+            this.video.mozRequestFullScreen();
+        } else if (this.video.msRequestFullscreen) {
+            this.video.msRequestFullscreen();
+        } else if (video.requestFullscreen) {
+            this.video.requestFullscreen();
+        } else {
+            console.log('No Fullscreen API')
+        }
+    };
+
+    /**
+     * Handle fullscreen state
+     *
+     * @access private
+     */
+    Player.prototype.handleFullscreenChange = function() {
+        if (document.fullscreenElement
+                || document.mozFullScreenElement
+                || document.webkitFullscreenElement) {
+            emit('fullscreen');
+        } else {
+            emit('exitFullscreen');
+        }
+    };
+
+    /**
+     * Handle `timeupdate` event
+     *
+     * @access private
+     */
+    Player.prototype.handleTimeUpdate = function() {
+        this.remainingText.innerHTML = format(this.video.duration - this.video.currentTime);
+        this.progress.style.width = (this.video.currentTime / this.video.duration) * 100 + '%';
+        if (typeof this.timelineEvent.firstQuartile === 'number'
+                &amp;&amp; this.video.currentTime >= this.timelineEvent.firstQuartile) {
+            emit('firstQuartile');
+            this.timelineEvent.firstQuartile = true;
+        }
+        if (typeof this.timelineEvent.midpoint === 'number'
+                &amp;&amp; this.video.currentTime >= this.timelineEvent.midpoint) {
+            emit('midpoint');
+            this.timelineEvent.midpoint = true;
+        }
+        if (typeof this.timelineEvent.thirdQuartile === 'number'
+                &amp;&amp; this.video.currentTime >= this.timelineEvent.thirdQuartile) {
+            emit('thirdQuartile');
+            this.timelineEvent.thirdQuartile = true;
+        }
+    };
+
+    /**
+     * Handle `canplay` event
+     */
+    Player.prototype.handleCanPlay = function() {
+        if (!this.firstTime) {
+            return;
+        }
+        console.log('duration: ' + this.video.duration);
+        console.log('muted: ' + this.video.muted);
+
+        // Played event time
+        this.timelineEvent.firstQuartile = this.video.duration * 0.25;
+        this.timelineEvent.midpoint = this.video.duration * 0.5;
+        this.timelineEvent.thirdQuartile = this.video.duration * 0.75;
+        this.timelineEvent.complete = this.video.duration;
+
+        this.durationText.innerHTML = format(this.video.duration);
+        this.remainingText.innerHTML = format(this.video.duration);
+        var img = this.volumeButton.getElementsByTagName('img')[0];
+        if (this.video.muted) {
+            img.src = asset('volume_off.png');
+        } else {
+            img.src = asset('volume_up.png');
+        }
+        this.firstTime = false;
+    };
+
+    /**
+     * Handle `playing` event
+     */
+    Player.prototype.handlePlaying = function() {
+        var img = this.playButton.getElementsByTagName('img')[0];
+        img.src = asset('pause.png');
+    };
+
+    /**
+     * Handle `pause` event
+     */
+    Player.prototype.handlePause = function() {
+        var img = this.playButton.getElementsByTagName('img')[0];
+        img.src = asset('play.png');
+    };
+
+    /**
+     * Handle `ended` event
+     */
+    Player.prototype.handleEnded = function() {
+        this.progress.style.width = '100%';
+        if (this.timelineEvent.complete
+                &amp;&amp; typeof this.timelineEvent.complete === 'number') {
+            emit('complete');
+            this.timelineEvent.complete = true;
+        }
+        this.hideControls();
+        this.cover.style.visibility = 'visible';
+        this.completed = true;
+    };
+
+    /**
+     * Handle replay button clicked event
+     */
+    Player.prototype.handleReplayButtonClicked = function() {
+        this.cover.style.visibility = 'hidden';
+        this.video.currentTime = 0;
+        this.video.play();
+    };
+
+    return Player;
+})();
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.Video.Player.html">Player</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 02 2018 05:00:42 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
