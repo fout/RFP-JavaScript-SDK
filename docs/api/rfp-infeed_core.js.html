@@ -146,12 +146,13 @@ RFP.InFeed.AdInfoModel = (function() {
         'main_image_url',
         'icon_image_url',
         'displayed_advertiser',
-        'tp_imp_urls'
+        'tp_imp_urls',
+        'vast_xml'
     ];
     var public_keys = [
         'title', 'description', 'click_url', 'ad_id',
         'icon_image_url', 'main_image_url', 'displayed_advertiser',
-        'optout', 'optout_click'
+        'optout', 'optout_click', 'vast_xml'
     ];
 
     /**
@@ -207,6 +208,15 @@ RFP.InFeed.AdInfoModel = (function() {
 })();
 
 RFP.InFeed.PlacementInfoModel = (function() {
+    /**
+     * @typedef {Object} RFP.InFeed.PlacementInfoModel~Model
+     * @property {string} adspot_id - Ad spot ID
+     * @property {string} template - Template
+     * @property {number} title_length - Title length
+     * @property {number} description_length - Description length
+     * @property {number} displayed_advertiser_length - Displayed advertiser length
+     */
+
     var keys = [
         'adspot_id', 'template', 'title_length',
         'description_length', 'displayed_advertiser_length'
@@ -282,7 +292,12 @@ RFP.InFeed.AdView = (function() {
         if (Util.isFunction(this.options.before_render)) {
             ad_info = this.options.before_render(ad_info, placement_info);
         }
-        var ad_html = this.template.render(ad_info);
+        var ad_info_copy = Util.extend({}, ad_info);
+        if (typeof ad_info_copy.main_image_url === 'string') {
+            ad_info_copy.creative_block_element =
+                '&lt;div class="rfp-creative-block-element">&lt;img src="' + ad_info.main_image_url + '" />&lt;/div>';
+        }
+        var ad_html = this.template.render(ad_info_copy);
         var ad_doms = this.buildHtmlDomList(ad_html);
         var inserted = this.swapTagToAd(ad_doms);
         this.showed = true;
@@ -570,7 +585,9 @@ RFP.InFeed.AdController = (function() {
      * @param {string} ad_id - Ad ID
      */
     AdController.prototype.showAd = function(ad_view, ad_id) {
-        if (ad_view instanceof RFP.InFeed.AdView) {
+        if (ad_view instanceof RFP.InFeed.AdView ||
+            (typeof RFP.InFeed.VideoAdView === 'function' &amp;&amp; ad_view instanceof RFP.InFeed.VideoAdView)
+        ) {
             var ad_info_obj = _getAdInfoById(this.loaded_ads, ad_id);
             if (!ad_info_obj) {
                 return;
@@ -608,6 +625,8 @@ RFP.InFeed.Default = (function() {
     var options = Default.options = {};
 
     var firstTime = true;
+
+    var canShowVideoAd = (typeof RFP.InFeed.VideoAdView === 'function') &amp;&amp; (typeof RFP.Video === 'object');
 
     /**
      * Search ad places
@@ -698,7 +717,13 @@ RFP.InFeed.Default = (function() {
             for (var i = 0; i &lt; ads.length &amp;&amp; i &lt; ad_places.length; i++) {
                 var ad_id = ads[i].ad_id;
                 var place = ad_places[i];
-                var ad_view = new RFP.InFeed.AdView(place, template, ad_view_options);
+                var ad_view;
+                if (canShowVideoAd &amp;&amp; typeof ads[i].vast_xml === 'string') {
+                    var video_ad = RFP.Video.VAST.parse(ads[i].vast_xml);
+                    ad_view = new RFP.InFeed.VideoAdView(place, video_ad, template, ad_view_options);
+                } else {
+                    ad_view = new RFP.InFeed.AdView(place, template, ad_view_options);
+                }
                 var adElement = controller.showAd(ad_view, ad_id);
                 if (ad_view.showed) {
                     if (!Default.options.viewable_impression) {
@@ -956,13 +981,13 @@ RFP.InFeed.Default = (function() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.Video.Player.html">Player</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="RFP.Common.AdInfoModelBase.html">AdInfoModelBase</a></li><li><a href="RFP.Common.NetworkAd.html">NetworkAd</a></li><li><a href="RFP.Common.NetworkBase.html">NetworkBase</a></li><li><a href="RFP.Common.Util.html">Util</a></li><li><a href="RFP.Conversion.Context.html">Context</a></li><li><a href="RFP.Conversion.ConvInfoModel.html">ConvInfoModel</a></li><li><a href="RFP.Conversion.Network.html">Network</a></li><li><a href="RFP.Conversion.PageUrl.html">PageUrl</a></li><li><a href="RFP.Conversion.Requester.html">Requester</a></li><li><a href="RFP.InFeed.AdController.html">AdController</a></li><li><a href="RFP.InFeed.AdInfoModel.html">AdInfoModel</a></li><li><a href="RFP.InFeed.AdView.html">AdView</a></li><li><a href="RFP.InFeed.Default.html">Default</a></li><li><a href="RFP.InFeed.Network.html">Network</a></li><li><a href="RFP.InFeed.PassbackAdView.html">PassbackAdView</a></li><li><a href="RFP.InFeed.PlacementInfoModel.html">PlacementInfoModel</a></li><li><a href="RFP.InFeed.Template.html">Template</a></li><li><a href="RFP.InFeed.VideoAdView.html">VideoAdView</a></li><li><a href="RFP.Video.Player.html">Player</a></li><li><a href="RFP.Video.VAST.html">VAST</a></li></ul><h3>Namespaces</h3><ul><li><a href="RFP.html">RFP</a></li><li><a href="RFP.Common.html">Common</a></li><li><a href="RFP.Common.Config.html">Config</a></li><li><a href="RFP.Conversion.html">Conversion</a></li><li><a href="RFP.InFeed.html">InFeed</a></li><li><a href="RFP.Video.html">Video</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Mar 02 2018 05:00:42 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Mar 15 2018 06:50:22 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
