@@ -37,12 +37,12 @@ RFP.Video = typeof window.RFP.Video === 'undefined' ? {} : window.RFP.Video;
 RFP.Video.Player = (function() {
     var Config = RFP.Common.Config;
     var Util = RFP.Common.Util;
+    var NetworkBase = RFP.Common.NetworkBase;
     var throttle = Util.throttle;
 
-    // temporary
-    var emit = function(event, element) {
-        console.log(event, element);
-    };
+    var emit = Util.emit;
+    var on = Util.on;
+    var one = Util.one;
 
     var format = function(sec) {
         sec = Math.floor(sec);
@@ -169,6 +169,65 @@ RFP.Video.Player = (function() {
         } else {
             this.navigateButton.visibility = 'hidden';
         }
+
+        // Setup VAST tracking event handler
+
+        var trackingEvents = function() {
+            if (this.model.ads.length === 0) {
+                return {};
+            }
+            var ad = this.model.ads[0];
+            if (ad.creatives.length === 0) {
+                return {};
+            }
+            var creative = ad.creatives[0];
+            return creative.trackingEvents;
+        }.bind(this)();
+        if (this.options.debug) {
+            console.log('trackingEvents: ', trackingEvents);
+        }
+
+        var handler = function(name) {
+            return function() {
+                // Send HTTP request if url
+                var urls = trackingEvents[name];
+                if (this.options.debug) {
+                    console.log(name, urls);
+                }
+                if (!urls) {
+                    return;
+                }
+                urls.forEach(function(url) {
+                    NetworkBase.sendRequest(url);
+                });
+            }.bind(this);
+        }.bind(this);
+
+        // one time event
+        [
+            'creativeView',
+            'start',
+            'firstQuartile',
+            'midpoint',
+            'thirdQuartile',
+            'complete'
+        ].forEach(function(name) {
+            one(name, handler(name));
+        });
+
+        // any time event
+        [
+            'resume',
+            'pause',
+            'mute',
+            'unmute',
+            'fullscreen',
+            'exitFullscreen'
+        ].forEach(function(name) {
+            on(name, handler(name));
+        })
+
+        emit('creativeView', this);
     };
 
     Player.prototype.debug = function() {
@@ -270,14 +329,14 @@ RFP.Video.Player = (function() {
         if (this.video.paused) {
             this.video.play();
             if (typeof this.timelineEvent.start === 'number') {
-                emit('start');
+                emit('start', this);
                 this.timelineEvent.start = true;
             } else {
-                emit('resume');
+                emit('resume', this);
             }
         } else {
             this.video.pause();
-            emit('pause');
+            emit('pause', this);
         }
     };
 
@@ -291,10 +350,10 @@ RFP.Video.Player = (function() {
         var img = this.volumeButton.querySelector('img');
         if (this.video.muted) {
             img.src = asset('volume_off.png');
-            emit('mute');
+            emit('mute', this);
         } else {
             img.src = asset('volume_up.png');
-            emit('unmute');
+            emit('unmute', this);
         }
     };
 
@@ -326,9 +385,9 @@ RFP.Video.Player = (function() {
         if (document.fullscreenElement
                 || document.mozFullScreenElement
                 || document.webkitFullscreenElement) {
-            emit('fullscreen');
+            emit('fullscreen', this);
         } else {
-            emit('exitFullscreen');
+            emit('exitFullscreen', this);
         }
     };
 
@@ -342,17 +401,17 @@ RFP.Video.Player = (function() {
         this.progress.style.width = (this.video.currentTime / this.video.duration) * 100 + '%';
         if (typeof this.timelineEvent.firstQuartile === 'number'
                 &amp;&amp; this.video.currentTime >= this.timelineEvent.firstQuartile) {
-            emit('firstQuartile');
+            emit('firstQuartile', this);
             this.timelineEvent.firstQuartile = true;
         }
         if (typeof this.timelineEvent.midpoint === 'number'
                 &amp;&amp; this.video.currentTime >= this.timelineEvent.midpoint) {
-            emit('midpoint');
+            emit('midpoint', this);
             this.timelineEvent.midpoint = true;
         }
         if (typeof this.timelineEvent.thirdQuartile === 'number'
                 &amp;&amp; this.video.currentTime >= this.timelineEvent.thirdQuartile) {
-            emit('thirdQuartile');
+            emit('thirdQuartile', this);
             this.timelineEvent.thirdQuartile = true;
         }
     };
@@ -407,7 +466,7 @@ RFP.Video.Player = (function() {
         this.progress.style.width = '100%';
         if (this.timelineEvent.complete
                 &amp;&amp; typeof this.timelineEvent.complete === 'number') {
-            emit('complete');
+            emit('complete', this);
             this.timelineEvent.complete = true;
         }
         this.hideControls();
@@ -443,7 +502,7 @@ RFP.Video.Player = (function() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Apr 11 2018 07:15:18 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Apr 13 2018 06:33:46 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
