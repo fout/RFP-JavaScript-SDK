@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: rfp-common/config.js</title>
+    <title>JSDoc: Namespace: Config</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,65 +17,98 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: rfp-common/config.js</h1>
+    <h1 class="page-title">Namespace: Config</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
+        <h2>
+            <span class="ancestors"><a href="RFP.html">RFP</a><a href="RFP.Common.html">.Common</a><a href="RFP.Common.Locale.html">.Locale</a>.</span>Config</h2>
+        
+    
+</header>
 
-/** @namespace */
-var RFP = window.RFP = window.RFP || {};
-/** @namespace */
-RFP.Common = RFP.Common || {};
+<article>
+    <div class="container-overview">
+    
+        
 
-/** @namespace */
-RFP.Common.Locale = RFP.Common.Locale || {};
-/** @namespace */
-RFP.Common.Locale.Config = RFP.Common.Locale.Config || {};
+        
 
-/**
- * @namespace
- * @property {object} host - Host configuration
- * @property {string} host.ad - Ad server
- * @property {string} host.imp - Impression server
- * @property {string} host.click - Click server
- * @property {string} host.conv - Conversion server
- * @property {string} protocol - HTTP protocol
- * @property {object} ad_type - Ad type
- * @property {number} ad_type.icon - icon type
- * @property {number} ad_type.infeed - infeed type
- * @property {string} version - SDK version
- * @property {object} conv - Convertion configuration
- * @property {number} conv.max_request_per_page - Max request per page
- * @property {number} jsonp_timeout_ms - JSONP timeout (msec)
- */
-RFP.Common.Config = {
-    host: {
-        ad: 'ad.rfp.fout.jp',
-        imp: 'imp.rfp.fout.jp',
-        click: 'click.rfp.fout.jp',
-        conv: 'conv.rfp.fout.jp',
-        assets: 'js.rfp.fout.jp'
-    },
-    protocol: window.location.protocol === 'http:' ? 'http:' : 'https:',
-    ad_type: {
-        icon: 2,
-        infeed: 5
-    },
-    version: '1.1.7',
-    conv: {
-        max_request_per_page: 10
-    },
-    jsonp_timeout_ms: 10000
-};
-</code></pre>
-        </article>
-    </section>
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="rfp-common_config.js.html">rfp-common/config.js</a>, <a href="rfp-common_config.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
