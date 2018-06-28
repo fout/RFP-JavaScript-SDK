@@ -115,6 +115,20 @@
   </url>
   
   <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/"
+                />
+  </url>
+  
+  <url>
     <loc>https://fout.github.io/RFP-JavaScript-SDK/en/dfp/</loc>
     <xhtml:link
                 rel="alternate"

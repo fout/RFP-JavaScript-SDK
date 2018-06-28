@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 
-    <title>In-Feed Advertisement :: RFP-JavaScript-SDK Docs</title>
+    <title>AMP :: RFP-JavaScript-SDK Docs</title>
     
     
     <link href="/RFP-JavaScript-SDK/css/nucleus.css?1530155779" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/RFP-JavaScript-SDK/en/infeed-ads/">
+  <body class="" data-url="/RFP-JavaScript-SDK/en/infeed-ads/1_7/">
     <nav id="sidebar" class="">
 
 
@@ -79,7 +79,7 @@
     
     <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/RFP-JavaScript-SDK/en/infeed-ads/">
@@ -216,7 +216,7 @@
  
   
     
-      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_7/" title="AMP" class="dd-item ">
+      <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/1_7/" title="AMP" class="dd-item active">
         <a href="/RFP-JavaScript-SDK/en/infeed-ads/1_7/">
         <b>7. </b>AMP
         
@@ -304,7 +304,7 @@
                   
                     
                     
-                      <option id="ja" value="/RFP-JavaScript-SDK/infeed-ads/">日本語</option>
+                      <option id="ja" value="/RFP-JavaScript-SDK/infeed-ads/1_7/">日本語</option>
                     
                   
               
@@ -318,7 +318,7 @@
                   
                     
                     
-                      <option id="en" value="/RFP-JavaScript-SDK/en/infeed-ads/" selected>English</option>
+                      <option id="en" value="/RFP-JavaScript-SDK/en/infeed-ads/1_7/" selected>English</option>
                     
                   
               
@@ -378,7 +378,13 @@
             
           
           
-            <a href='/RFP-JavaScript-SDK/en/'>TOP</a> > In-Feed Advertisement
+            
+            
+          
+          
+            <a href='/RFP-JavaScript-SDK/en/'>TOP</a> > <a href='/RFP-JavaScript-SDK/en/infeed-ads/'>In-Feed Advertisement</a> > AMP
+          
+         
           
          
           
@@ -388,7 +394,20 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#attribute-explanation">Attribute Explanation</a>
+<ul>
+<li><a href="#available-data-attributes">Available <code>data</code> attributes</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -400,25 +419,94 @@
         
         <div id="body-inner">
           
-            <h1>In-Feed Advertisement</h1>
+            <h1>AMP</h1>
           
 
         
 
 
-<ul>
-<li><a href="1_1">Getting Started</a></li>
-<li><a href="1_2">Additional load of ads</a></li>
-<li><a href="1_3">Shortening of the title of ads and description</a></li>
-<li><a href="1_4">Display ads faster</a></li>
-<li><a href="1_5">Customized implementation</a></li>
-<li><a href="1_6">Ads parameter</a></li>
-</ul>
+
+
+<p>If your site have AMP version pages, you can use <code>amp-ad</code> tag for ads.</p>
+
+<p>The example below:</p>
+
+<pre><code class="language-html">&lt;amp-ad
+  type=&quot;rfp&quot;
+  width=&quot;320&quot;
+  height=&quot;250&quot;
+  data-adspot-id=&quot;XXXXXXXX&quot;
+  data-stylesheet-url=&quot;http://example.com/styles/ad.css&quot;&gt;
+&lt;/amp-ad&gt;
+</code></pre>
+
+<h3 id="attribute-explanation">Attribute Explanation</h3>
+
+<table>
+<thead>
+<tr>
+<th>Attribute name</th>
+<th>Explanation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>rfp</code> (fixed, required.)</td>
+</tr>
+
+<tr>
+<td><code>width</code></td>
+<td>Width of ad unit.</td>
+</tr>
+
+<tr>
+<td><code>height</code></td>
+<td>Height of ad unit.</td>
+</tr>
+
+<tr>
+<td><code>data-*</code></td>
+<td>Additional attribute.</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="available-data-attributes">Available <code>data</code> attributes</h4>
+
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th align="center">Required</th>
+<th>Explanation</th>
+<th>Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>data-adspot-id</code></td>
+<td align="center"><i class="fa fa-check"></i></td>
+<td>Ad Spot ID</td>
+<td><code>XXXXXX</code></td>
+</tr>
+
+<tr>
+<td><code>data-stylesheet-url</code></td>
+<td align="center"></td>
+<td>Stylesheet URL for Ads</td>
+<td><code>http://example.com/styles/ad.css</code></td>
+</tr>
+</tbody>
+</table>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -564,6 +652,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -574,6 +663,25 @@
                     
             
         
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -594,22 +702,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
         
@@ -617,10 +709,10 @@
 
 
         
-            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/en/" title="TOP"> <i class="fa fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/en/infeed-ads/1_6/" title="Ads parameter"> <i class="fa fa-chevron-left"></i></a>
         
         
-            <a class="nav nav-next" href="/RFP-JavaScript-SDK/en/infeed-ads/1_1/" title="Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 
@@ -650,3 +742,4 @@
 
   </body>
 </html>
+

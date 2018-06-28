@@ -64,5 +64,14 @@
       <description>パラメータ名 説明 例 title タイトル文言 TestAd description 説明・紹介文 テスト広告です。 click_url 広告クリック時の遷移先 URL http://click.example.com/... icon_image_url アイコン型の正方形画像の URL http://banner.dspcdn.com/... main_image_url バナー型の矩形画</description>
     </item>
     
+    <item>
+      <title>AMP への対応</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</guid>
+      <description>広告掲載ページが AMP の場合、以下のような記述で広告を埋め込むことができます。 &amp;lt;amp-ad type=&amp;quot;rfp&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;250&amp;quot; data-adspot-id=&amp;quot;XXXXXXXX&amp;quot; data-stylesheet-url=&amp;quot;http://example.com/styles/ad.css&amp;quot;&amp;gt; &amp;lt;/amp-ad&amp;gt; 各属性の説明 属性名 説明 type rfp 固定となり必須です。 width 広告</description>
+    </item>
+    
   </channel>
 </rss>
