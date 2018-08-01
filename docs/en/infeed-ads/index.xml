@@ -74,7 +74,7 @@ Sending ads request Sending request of ads contents, and then get the informatio
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</guid>
-      <description>Parameter name Explanation Example     title title words TestAd   description description This is an test ad.   click_url URL of transition destination when click the ads http://click.example.com/…   main_image_url URL of banner style rectangular picture http://banner.dspcdn.com/…   ad_id ID of ads content 123   displayed_advertiser Name of advertiser Provided by test advertiser   optout URL of optout http://example.</description>
+      <description>Parameter name Explanation Example     title title words TestAd   description description This is an test ad.   click_url URL of transition destination when click the ads http://click.example.com/…   main_image_url URL of banner style rectangular picture http://banner.dspcdn.com/…   ad_id ID of ads content 123   displayed_advertiser Name of advertiser Provided by test advertiser   optout_click Action on click optout onClick=.</description>
     </item>
     
     <item>
