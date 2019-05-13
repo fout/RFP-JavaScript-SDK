@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: rfp-common/arguments.js</title>
+    <title>JSDoc: Source: rfp-adnetwork.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: rfp-common/arguments.js</h1>
+    <h1 class="page-title">Source: rfp-adnetwork.js</h1>
 
     
 
@@ -26,28 +26,109 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-
-/** @namespace */
+            <pre class="prettyprint source linenums"><code>/** @namespace */
 var RFP = window.RFP = window.RFP || {};
+/** @namespace */
+RFP.AdNetwork = RFP.AdNetwork || {};
 
-RFP.arguments = (function() {
-    var scripts = document.getElementsByTagName('script');
-    var src = scripts[scripts.length - 1].src;
-    var query = src.substring(src.indexOf('?') + 1);
-    var pairs = query.split('&amp;');
+var SpotX = function () {};
 
-    var args = {};
-    for (var i = 0; i &lt; pairs.length; i++) {
-        var pair = pairs[i].split('=');
-        var key = decodeURIComponent(pair[0]);
-        var value = decodeURIComponent(pair[1]);
-        args[key] = value;
+/**
+ * Translate options
+ *
+ * @param {object} options - Raw options
+ * @return {object} Translated options
+ */
+SpotX.prototype.translateOptions = function (options) {
+    var mapping = {
+        'adnetwork_adspot_id': 'channel_id',
+        'width': 'content_width',
+        'height': 'content_height'
+    };
+
+    var opts = {};
+    Object.keys(options).forEach(function (k) {
+        if (k in mapping) {
+            opts[mapping[k]] = options[k];
+        } else {
+            opts[k] = options[k];
+        }
+    });
+
+    return opts;
+};
+
+/**
+ * Create script element for ad network 7
+ *
+ * @param {string} adSpotId
+ * @param {string} channelId
+ * @param {object} options
+ * @return {HTMLElement} script element
+ */
+SpotX.prototype.createElement = function (adSpotId, channelId, options) {
+    var el = document.createElement('script');
+    el.type = 'text/javascript';
+    el.src = '//js.spotx.tv/easi/v1/' + channelId + '.js';
+    var opts = {
+        'channel_id': channelId,
+        'ad_unit': 'incontent',
+        'content_width': 300,
+        'content_height': 180,
+        'loop': 0,
+        'ad_volume': 0,
+        'ad_max_duration': 180,
+        'autoplay': 1,
+    };
+    for (var p in options) {
+        if (p in opts) {
+            opts[p] = options[p];
+        }
     }
 
-    return args;
-})();
+    Object.keys(opts).forEach(function (k) {
+        el.setAttribute('data-spotx_' + k, opts[k]);
+    });
 
+    return el;
+};
+
+SpotX.prototype.run = function (options) {
+    var opts = this.translateOptions(options);
+    var el = this.createElement(
+        options.adspot_id,
+        options.adnetwork_adspot_id,
+        opts
+    );
+
+    var scripts = document.getElementsByTagName('script');
+    var script = scripts[scripts.length - 1];
+    script.parentElement.insertBefore(el, script.nextSibling);
+};
+
+var AdNetworks = {
+    7: SpotX
+};
+
+/**
+ * Ad Network dispatcher
+ *
+ * @param {object} options
+ * @param {string} options.adspot_id
+ * @param {number} options.adnetwork_id
+ * @param {string} options.adnetwork_adspot_id
+ * @param {number} [options.width]
+ * @param {number} [options.height]
+ * @throws {TypeError} Invalid ad network id
+ */
+RFP.AdNetwork.run = function (options) {
+    var adNetworkId = options.adnetwork_id
+    if (!(adNetworkId in AdNetworks)) {
+        throw TypeError('Invalid ad network id: ' + adNetworkId);
+    }
+
+    (new AdNetworks[adNetworkId]).run(options);
+};
 </code></pre>
         </article>
     </section>

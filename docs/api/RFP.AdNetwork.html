@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Network</title>
+    <title>JSDoc: Namespace: AdNetwork</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Network</h1>
+    <h1 class="page-title">Namespace: AdNetwork</h1>
 
     
 
@@ -28,8 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="RFP.html">RFP</a><a href="RFP.Conversion.html">.Conversion</a>.</span>Network</h2>
+        <h2>
+            <span class="ancestors"><a href="RFP.html">RFP</a>.</span>AdNetwork</h2>
         
     
 </header>
@@ -39,18 +39,7 @@
     
         
 
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -82,7 +71,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rfp-conversion_core.js.html">rfp-conversion/core.js</a>, <a href="rfp-conversion_core.js.html#line53">line 53</a>
+        <a href="rfp-adnetwork.js.html">rfp-adnetwork.js</a>, <a href="rfp-adnetwork.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -94,35 +83,9 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="RFP.Common.NetworkBase.html">RFP.Common.NetworkBase</a></li>
-    </ul>
-
 
     
 
@@ -147,7 +110,7 @@
     
 
     
-    <h4 class="name" id=".buildConvRequestUrl"><span class="type-signature">(static) </span>buildConvRequestUrl<span class="signature">(conv_info, page_url)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id=".run"><span class="type-signature">(static) </span>run<span class="signature">(options)</span><span class="type-signature"></span></h4>
     
 
     
@@ -155,7 +118,7 @@
 
 
 <div class="description">
-    Build conversion request URL
+    Ad Network dispatcher
 </div>
 
 
@@ -191,30 +154,7 @@
 
         <tr>
             
-                <td class="name"><code>conv_info</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="RFP.Conversion.ConvInfoModel.html">RFP.Conversion.ConvInfoModel</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Conversion info</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>page_url</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -230,187 +170,194 @@
 
             
 
-            <td class="description last">Page URL</td>
-        </tr>
+            <td class="description last">
+                <h6>Properties</h6>
+                
 
-    
-    </tbody>
-</table>
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rfp-conversion_core.js.html">rfp-conversion/core.js</a>, <a href="rfp-conversion_core.js.html#line61">line 61</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
+        <th>Type</th>
 
         
-<div class="param-desc">
-    Conversion request URL
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
+        <th>Attributes</th>
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>adspot_id</code></td>
+            
+
+            <td class="type">
+            
+                
 <span class="param-type">string</span>
 
 
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".sendConversion"><span class="type-signature">(static) </span>sendConversion<span class="signature">(conv_info, page_url)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Send conversion
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>conv_info</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">Conversion info</td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>page_url</code></td>
+                <td class="name"><code>adnetwork_id</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">number</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">Page URL</td>
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adnetwork_adspot_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -451,7 +398,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="rfp-conversion_core.js.html">rfp-conversion/core.js</a>, <a href="rfp-conversion_core.js.html#line91">line 91</a>
+        <a href="rfp-adnetwork.js.html">rfp-adnetwork.js</a>, <a href="rfp-adnetwork.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -472,6 +419,35 @@
 
 
 
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Invalid ad network id
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">TypeError</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
 
 
 
