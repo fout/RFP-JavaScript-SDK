@@ -27,9 +27,47 @@ function parseCookie() {
     return attrs;
 }
 
+function parseArguments() {
+    var query = window.location.search.substring(1);
+    if (query.length === 0) {
+        return {};
+    }
+    var pairs = query.split('&');
+    var args = {};
+    for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i];
+        var pieces = pair.split('=');
+        var key = decodeURIComponent(pieces[0]);
+        var value = decodeURIComponent(pieces[1]);
+        args[key] = value;
+    }
+    return args;
+}
+
+var args = parseArguments();
 var attrs = parseCookie();
-if (typeof attrs['r-sd'] === 'undefined') {
-    (new Image()).src = 'https://sync.rfp.fout.jp/sync?dsp_id=4';
+
+var mappings = {
+    // TVer
+    26: [
+        //2, // TTD
+        //4, // AJA
+        //5, // MarketOne
+        //6  // PORTO
+    ]
+};
+
+var networkId = args['network_id'];
+if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
+    var dspIds = mappings[networkId];
+    if (dspIds instanceof Array) {
+        for (var i = 0; i < dspIds.length; i++) {
+            var dspId = dspIds[i];
+            if (typeof attrs['r-sd-' + dspId]) {
+                (new Image()).src = 'https://sync.rfp.fout.jp/sync?dsp_id=' + dspId;
+            }
+        }
+    }
 }
         </script>
     </body>
