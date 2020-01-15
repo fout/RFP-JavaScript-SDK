@@ -44,6 +44,10 @@ function parseArguments() {
     return args;
 }
 
+function probability(i) {
+    return Math.random() * 100 < i;
+}
+
 var args = parseArguments();
 var attrs = parseCookie();
 
@@ -61,9 +65,9 @@ var mappingsSpotX = {
     // TVer
     26: [
         // Publisher ID
-        //'824',
-        //'825',
-        //'826',
+        '824',
+        '825',
+        '826',
         //'1184',
         //'1185',
         //'1186',
@@ -87,7 +91,7 @@ if (typeof networkId !== 'undefined' && mappingsSpotX.hasOwnProperty(networkId))
     var publisherIds = mappingsSpotX[networkId];
     var publisherId = args['publisher_id'];
     for (var j = 0; j < publisherIds.length; j++) {
-        if (publisherIds[j] === publisherId) {
+        if (publisherIds[j] === publisherId && probability(1)) {
             if (typeof attrs['a-sd-1'] === 'undefined') {
                 (new Image()).src = 'https://sync.search.spotxchange.com/partner?adv_id=8768&redir=https%3A%2F%2Fsync.rfp.fout.jp%2Fadserver%2Fmap%3Fadserver_id%3D1%26uid%3D%24SPOTX_USER_ID';
             }
