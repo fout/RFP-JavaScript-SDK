@@ -54,10 +54,10 @@ var attrs = parseCookie();
 var mappings = {
     // TVer
     26: [
-        //2, // TTD
+        2, // TTD
         //4, // AJA
-        //5, // MarketOne
-        //6  // PORTO
+        5, // MarketOne
+        6  // PORTO
     ]
 };
 // Sync with SpotX
@@ -78,7 +78,7 @@ var mappingsSpotX = {
 var networkId = args['network_id'];
 if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
     var dspIds = mappings[networkId];
-    if (dspIds instanceof Array) {
+    if (dspIds instanceof Array && probability(1)) {
         for (var i = 0; i < dspIds.length; i++) {
             var dspId = dspIds[i];
             if (typeof attrs['r-sd-' + dspId] === 'undefined') {
