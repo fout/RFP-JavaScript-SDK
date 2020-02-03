@@ -78,7 +78,7 @@ var mappingsSpotX = {
 var networkId = args['network_id'];
 if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
     var dspIds = mappings[networkId];
-    if (dspIds instanceof Array && probability(1)) {
+    if (dspIds instanceof Array && probability(30)) {
         for (var i = 0; i < dspIds.length; i++) {
             var dspId = dspIds[i];
             if (typeof attrs['r-sd-' + dspId] === 'undefined') {
