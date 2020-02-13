@@ -104,10 +104,14 @@ if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
     }
 }
 var publisherId = args['publisher_id'];
-if (typeof publisherId !== 'undefined') {
-    for (var a = 0; a < mappingsAdServers.length; a++) {
-        var ma = mappingsAdServers[a]
-        if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
+for (var a = 0; a < mappingsAdServers.length; a++) {
+    var ma = mappingsAdServers[a];
+    if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
+        if (typeof publisherId === 'undefined') {
+            if (typeof attrs['a-sd-' + ma.id] === 'undefined' && probability(10)) {
+                (new Image()).src = ma.endpoint;
+            }
+        } else {
             var publisherIds = ma.mappings[networkId];
             if (publisherIds instanceof Array) {
                 for (var j = 0; j < publisherIds.length; j++) {
