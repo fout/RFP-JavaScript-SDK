@@ -108,7 +108,7 @@ for (var a = 0; a < mappingsAdServers.length; a++) {
     var ma = mappingsAdServers[a];
     if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
         if (typeof publisherId === 'undefined') {
-            if (typeof attrs['a-sd-' + ma.id] === 'undefined' && probability(10)) {
+            if (typeof attrs['a-sd-' + ma.id] === 'undefined' && probability(50)) {
                 (new Image()).src = ma.endpoint;
             }
         } else {
