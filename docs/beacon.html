@@ -27,8 +27,8 @@ function parseCookie() {
     return attrs;
 }
 
-function parseArguments() {
-    var query = window.location.search.substring(1);
+function parseArguments(qs) {
+    var query = qs.substring(1);
     if (query.length === 0) {
         return {};
     }
@@ -44,31 +44,76 @@ function parseArguments() {
     return args;
 }
 
+function sendBeaconRequest(s) {
+    (new Image()).src = s;
+}
+
 function probability(i) {
     return Math.random() * 100 < i;
 }
 
-var args = parseArguments();
+function sendDSP(mappings, attrs, networkId) {
+    if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
+        var dspIds = mappings[networkId];
+        if (dspIds instanceof Array) {
+            for (var i = 0; i < dspIds.length; i++) {
+                var dspId = dspIds[i];
+                if (typeof attrs['r-sd-' + dspId] === 'undefined') {
+                    sendBeaconRequest('https://sync.rfp.fout.jp/sync?dsp_id=' + dspId);
+                }
+            }
+        }
+    }
+}
+
+function sendAdServer(mappingsAdServers, attrs, networkId, publisherId) {
+    for (var a = 0; a < mappingsAdServers.length; a++) {
+        var ma = mappingsAdServers[a];
+        if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
+            if (typeof publisherId === 'undefined') {
+                if (typeof attrs['a-sd-' + ma.id] === 'undefined') {
+                    sendBeaconRequest(ma.endpoint);
+                }
+            } else {
+                var publisherIds = ma.mappings[networkId];
+                if (publisherIds instanceof Array) {
+                    for (var j = 0; j < publisherIds.length; j++) {
+                        if (publisherIds[j] === publisherId) {
+                            if (typeof attrs['a-sd-' + ma.id] === 'undefined') {
+                                sendBeaconRequest(ma.endpoint);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+var args = parseArguments(window.location.search);
 var attrs = parseCookie();
+var networkId = args['network_id'];
+var publisherId = args['publisher_id'];
 // DSP
 var mappings = {
     // TVer
-    26: [
-        2, // TTD
-        //4, // AJA
-        5, // MarketOne
-        6  // PORTO
+    '26': [
+        '2', // TTD
+        //'4', // AJA
+        '5', // MarketOne
+        '6'  // PORTO
     ]
 };
 // AdServer
 var mappingsAdServers = [
 {
     // SpotX
-    "id": 1,
-    "endpoint": 'https://sync.search.spotxchange.com/partner?adv_id=8768&redir=https%3A%2F%2Fsync.rfp.fout.jp%2Fadserver%2Fmap%3Fadserver_id%3D1%26uid%3D%24SPOTX_USER_ID',
-    "mappings": {
+    'id': 1,
+    'endpoint': 'https://sync.search.spotxchange.com/partner?adv_id=8768&redir=https%3A%2F%2Fsync.rfp.fout.jp%2Fadserver%2Fmap%3Fadserver_id%3D1%26uid%3D%24SPOTX_USER_ID',
+    'mappings': {
         // TVer
-        26: [
+        '26': [
             // Publisher ID
             '824',
             '825',
@@ -81,51 +126,20 @@ var mappingsAdServers = [
     }
 }, {
     // Ad Generation
-    "id": 2,
-    "endpoint": 'https://tg.socdm.com/aux/idsync?proto=foutred_adgen',
-    "mappings": {
+    'id': 2,
+    'endpoint': 'https://tg.socdm.com/aux/idsync?proto=foutred_adgen',
+    'mappings': {
         // TVer
-        26: [
+        '26': [
             // Publisher ID
             '823'
         ]
     }
 }];
-var networkId = args['network_id'];
-if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
-    var dspIds = mappings[networkId];
-    if (dspIds instanceof Array) {
-        for (var i = 0; i < dspIds.length; i++) {
-            var dspId = dspIds[i];
-            if (typeof attrs['r-sd-' + dspId] === 'undefined') {
-                (new Image()).src = 'https://sync.rfp.fout.jp/sync?dsp_id=' + dspId;
-            }
-        }
-    }
-}
-var publisherId = args['publisher_id'];
-for (var a = 0; a < mappingsAdServers.length; a++) {
-    var ma = mappingsAdServers[a];
-    if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
-        if (typeof publisherId === 'undefined') {
-            if (typeof attrs['a-sd-' + ma.id] === 'undefined') {
-                (new Image()).src = ma.endpoint;
-            }
-        } else {
-            var publisherIds = ma.mappings[networkId];
-            if (publisherIds instanceof Array) {
-                for (var j = 0; j < publisherIds.length; j++) {
-                    if (publisherIds[j] === publisherId) {
-                        if (typeof attrs['a-sd-' + ma.id] === 'undefined') {
-                            (new Image()).src = ma.endpoint;
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-    }
-}
+
+sendDSP(mappings, attrs, networkId);
+sendAdServer(mappingsAdServers, attrs, networkId, publisherId);
+
         </script>
     </body>
 </html>
