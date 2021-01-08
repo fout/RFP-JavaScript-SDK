@@ -53,7 +53,7 @@ function probability(i) {
 }
 
 function sendDSP(mappings, attrs, networkId) {
-    if (typeof networkId !== 'undefined' && mappings.hasOwnProperty(networkId)) {
+    if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
         var dspIds = mappings[networkId];
         if (dspIds instanceof Array) {
             for (var i = 0; i < dspIds.length; i++) {
@@ -69,7 +69,7 @@ function sendDSP(mappings, attrs, networkId) {
 function sendAdServer(mappingsAdServers, attrs, networkId, publisherId) {
     for (var a = 0; a < mappingsAdServers.length; a++) {
         var ma = mappingsAdServers[a];
-        if (typeof networkId !== 'undefined' && ma.mappings.hasOwnProperty(networkId)) {
+        if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(ma.mappings, networkId)) {
             if (typeof publisherId === 'undefined') {
                 if (typeof attrs['a-sd-' + ma.id] === 'undefined') {
                     sendBeaconRequest(ma.endpoint);
