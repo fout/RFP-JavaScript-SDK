@@ -6,9 +6,8 @@
     </head>
     <body>
         <script>
-function parseCookie() {
+function parseCookie(cookie) {
     var attrs = {};
-    var cookie = document.cookie;
     if (typeof cookie !== 'string' || cookie.length === 0) {
         return {};
     }
@@ -92,7 +91,7 @@ function sendAdServer(mappingsAdServers, attrs, networkId, publisherId) {
 }
 
 var args = parseArguments(window.location.search);
-var attrs = parseCookie();
+var attrs = parseCookie(document.cookie);
 var networkId = args['network_id'];
 var publisherId = args['publisher_id'];
 // DSP
