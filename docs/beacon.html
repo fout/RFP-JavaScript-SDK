@@ -51,6 +51,10 @@ function probability(i) {
     return Math.random() * 100 < i;
 }
 
+function shouldSendDSP(dspId) {
+    return !(dspId === 7 || dspId === 9) || probability(1)
+}
+
 function sendDSP(mappings, attrs, networkId) {
     if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
         var dspIds = mappings[networkId];
@@ -58,7 +62,9 @@ function sendDSP(mappings, attrs, networkId) {
             for (var i = 0; i < dspIds.length; i++) {
                 var dspId = dspIds[i];
                 if (typeof attrs['r-sd-' + dspId] === 'undefined') {
-                    sendBeaconRequest('https://sync.rfp.fout.jp/sync?dsp_id=' + dspId);
+                    if (shouldSendDSP(dspId)) {
+                        sendBeaconRequest('https://sync.rfp.fout.jp/sync?dsp_id=' + dspId);
+                    }
                 }
             }
         }
@@ -101,7 +107,9 @@ var mappings = {
         '2', // TTD
         //'4', // AJA
         '5', // MarketOne
-        '6'  // PORTO
+        '6', // PORTO
+        '7', // ScaleOut
+        '9'  // DV360
     ]
 };
 // AdServer
