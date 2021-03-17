@@ -52,7 +52,7 @@ function probability(i) {
 }
 
 function shouldSendDSP(dspId) {
-    return !(dspId === '7' || dspId === '9') || probability(1);
+    return !(dspId === '7' || dspId === '9') || probability(30);
 }
 
 function sendDSP(mappings, attrs, networkId) {
