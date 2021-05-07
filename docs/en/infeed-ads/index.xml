@@ -74,7 +74,7 @@ Sending ads request Sending request of ads contents, and then get the informatio
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</guid>
-      <description>Parameter name Explanation Example     title title words TestAd   description description This is an test ad.   click_url URL of transition destination when click the ads http://click.example.com/…   main_image_url URL of banner style rectangular picture http://banner.dspcdn.com/…   ad_id ID of ads content 123   displayed_advertiser Name of advertiser Provided by test advertiser   optout_click Action on click optout onClick=.</description>
+      <description>Parameter name Explanation Example     title title words TestAd   description description This is an test ad.   click_url URL of transition destination when click the ads https://click.example.com/…   main_image_url URL of banner style rectangular picture https://banner.dspcdn.com/…   ad_id ID of ads content 123   displayed_advertiser Name of advertiser Provided by test advertiser   optout_click Action on click optout onClick=.</description>
     </item>
     
     <item>
@@ -85,7 +85,7 @@ Sending ads request Sending request of ads contents, and then get the informatio
       <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/</guid>
       <description>If your site have AMP version pages, you can use amp-ad tag for ads.
 The example below:
-&amp;lt;amp-ad type=&amp;quot;rfp&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;250&amp;quot; data-adspot-id=&amp;quot;XXXXXXXX&amp;quot; data-stylesheet-url=&amp;quot;http://example.com/styles/ad.css&amp;quot;&amp;gt; &amp;lt;/amp-ad&amp;gt;  Attribute Explanation    Attribute name Explanation     type rfp (fixed, required.)   width Width of ad unit.   height Height of ad unit.   data-* Additional attribute.    Available data attributes    Parameter name Required Explanation Example     data-adspot-id  Ad Spot ID XXXXXX   data-stylesheet-url  Stylesheet URL for Ads http://example.</description>
+&amp;lt;amp-ad type=&amp;quot;rfp&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;250&amp;quot; data-adspot-id=&amp;quot;XXXXXXXX&amp;quot; data-stylesheet-url=&amp;quot;https://example.com/styles/ad.css&amp;quot;&amp;gt; &amp;lt;/amp-ad&amp;gt;  Attribute Explanation    Attribute name Explanation     type rfp (fixed, required.)   width Width of ad unit.   height Height of ad unit.   data-* Additional attribute.    Available data attributes    Parameter name Required Explanation Example     data-adspot-id  Ad Spot ID XXXXXX   data-stylesheet-url  Stylesheet URL for Ads https://example.</description>
     </item>
     
   </channel>

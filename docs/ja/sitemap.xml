@@ -129,6 +129,22 @@
   </url>
   
   <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_8/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_2/</loc>
+  </url>
+  
+  <url>
     <loc>https://fout.github.io/RFP-JavaScript-SDK/dfp/</loc>
     <xhtml:link
                 rel="alternate"
@@ -154,6 +170,10 @@
                 hreflang="ja"
                 href="https://fout.github.io/RFP-JavaScript-SDK/namespace/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/video/</loc>
   </url>
   
   <url>

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 
-    <title>名前空間 :: RFP-JavaScript-SDK Docs</title>
+    <title>動画広告 :: RFP-JavaScript-SDK Docs</title>
     
     
     <link href="/RFP-JavaScript-SDK/css/nucleus.css?1620366135" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/RFP-JavaScript-SDK/namespace/">
+  <body class="" data-url="/RFP-JavaScript-SDK/video/">
     <nav id="sidebar" class="">
 
 
@@ -354,8 +354,8 @@
   
     
     <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/RFP-JavaScript-SDK/namespace/">
@@ -376,8 +376,8 @@
   
     
     <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/RFP-JavaScript-SDK/video/">
@@ -415,22 +415,10 @@
                   
                     
                     
-                      <option id="ja" value="/RFP-JavaScript-SDK/namespace/" selected>日本語</option>
+                      <option id="ja" value="/RFP-JavaScript-SDK/video/" selected>日本語</option>
                     
                   
               
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="en" value="/RFP-JavaScript-SDK/en/namespace/">English</option>
-                    
                   
               
           
@@ -489,7 +477,7 @@
             
           
           
-            <a href='/RFP-JavaScript-SDK/'>TOP</a> > 名前空間
+            <a href='/RFP-JavaScript-SDK/'>TOP</a> > 動画広告
           
          
           
@@ -499,7 +487,19 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#動画用のパラメータ">動画用のパラメータ</a></li>
+<li><a href="#cssによるカスタマイズ">CSSによるカスタマイズ</a></li>
+</ul></li>
+<li><a href="#再生終了時にコールバック関数を実行する">再生終了時にコールバック関数を実行する</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -511,13 +511,141 @@
         
         <div id="body-inner">
           
-            <h1>名前空間</h1>
+            <h1>動画広告</h1>
           
 
         
 
 
-<p><code>RFP</code> 変数を <code>window</code> オブジェクト直下に作成します。この他のグローバル汚染は一切おこないません。</p>
+
+
+<p>広告枠の広告種別に動画を設定している場合、動画広告が再生されます。</p>
+
+<p>動画枠は表示のカスタマイズが行えます。以下で解説します。</p>
+
+<h3 id="動画用のパラメータ">動画用のパラメータ</h3>
+
+<p>広告タグにパラメータを付加することで表示をカスタマイズすることができます。</p>
+
+<p>指定可能なパラメータを以下に示します。</p>
+
+<table>
+<thead>
+<tr>
+<th>parameter</th>
+<th>type</th>
+<th>desc</th>
+<th>e.g.</th>
+<th>note</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>data-rfp-video-width</code><br><code>data-rfp-video-height</code></td>
+<td>CSS Text</td>
+<td>動画の幅・高さ</td>
+<td><code>100%</code> <code>50vw</code></td>
+<td>幅指定あり、高さ未指定の場合、幅に合わせてなりゆきとなる<br>両方未指定の場合はVAST内の幅・高さが用いられる</td>
+</tr>
+
+<tr>
+<td><code>data-rfp-video-on-ended</code></td>
+<td>Function name</td>
+<td>動画終了時に呼ばれる関数名</td>
+<td><code>onVideoAdEnded</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>data-rfp-video-close-button</code></td>
+<td>Boolean string</td>
+<td>閉じるボタンの有無</td>
+<td>表示: <code>1</code> <code>true</code><br> 非表示: <code>0</code> <code>false</code></td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>data-rfp-video-optout-button</code></td>
+<td>Boolean string</td>
+<td>オプトアウトボタンの有無</td>
+<td>表示: <code>1</code> <code>true</code><br> 非表示: <code>0</code> <code>false</code></td>
+<td>飛び先は <code>https://js.fout.jp/info/privacy.html</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>記述例:</p>
+
+<pre><code class="language-html">    &lt;div id=&quot;RFP_AD_NDgxOjUx&quot;&gt;
+        &lt;ins data-rfp-display-adspot-id=&quot;NDgxOjUx&quot;
+             data-rfp-video-width=&quot;50vw&quot;
+             data-rfp-video-on-ended=&quot;onVideoAdEnded&quot;
+             data-rfp-video-close-button=&quot;true&quot;
+             data-rfp-video-optout-button=&quot;true&quot;
+             style=&quot;display:none&quot;&gt;&lt;/ins&gt;
+    &lt;/div&gt;
+</code></pre>
+
+<p>いずれのパラメータも任意ですが、動画の幅 (<code>data-rfp-video-width</code>) を指定しておきましょう。幅のみ指定した場合はなりゆきで高さが決定されます。</p>
+
+<h3 id="cssによるカスタマイズ">CSSによるカスタマイズ</h3>
+
+<p>CSSを追加することにより見た目のカスタマイズが可能になります。
+例えば以下のように記述することにより、スティッキー表示とすることができます。</p>
+
+<pre><code class="language-css">#RFP_AD_NDgxOjUx .rfp-video-ad-view {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>指定しない場合</th>
+<th>指定した場合</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="https://user-images.githubusercontent.com/11178/116060327-bd9a4a80-a6bc-11eb-97aa-019befcc07ab.png" alt="image" /></td>
+<td><img src="https://user-images.githubusercontent.com/11178/116060406-d0ad1a80-a6bc-11eb-8d2c-fa300bddb334.png" alt="image" /></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="再生終了時にコールバック関数を実行する">再生終了時にコールバック関数を実行する</h2>
+
+<p><code>data-rfp-video-on-ended</code> を指定することにより、動画再生終了時に任意の関数を実行することができます。
+引数として <code>.rfp-video-ad-view</code> 要素が渡されるのでそれに対して操作を行うこともできます。</p>
+
+<p>以下では例として再生終了時にフェードアウトして消える効果を追加しています。</p>
+
+<pre><code class="language-css">#RFP_AD_NDgxOjUx .rfp-video-ad-view {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    opacity: 1;
+    transition: opacity 1s linear;
+}
+#RFP_AD_NDgxOjUx .rfp-video-ad-view.hide {
+    opacity: 0;
+}
+</code></pre>
+
+<pre><code class="language-javascript">function onVideoAdEnded(el) {
+    console.log('video ended');
+    el.addEventListener('transitionend', function() {
+        el.querySelector('.rfp-video-close-button').click();
+    });
+    el.className += ' hide';
+}
+</code></pre>
 
 
 <footer class=" footline" >
@@ -766,7 +894,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -783,8 +910,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -804,10 +929,10 @@
 
 
         
-            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/dfp/" title="DFP連携"> <i class="fa fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/namespace/" title="名前空間"> <i class="fa fa-chevron-left"></i></a>
         
         
-            <a class="nav nav-next" href="/RFP-JavaScript-SDK/video/" title="動画広告" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 
