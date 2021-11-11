@@ -51,6 +51,10 @@ function probability(i) {
     return Math.random() * 100 < i;
 }
 
+function shouldAddScriptTag(dspId) {
+    return dspId !== '10' || probability(1);
+}
+
 function sendDSP(mappings, attrs, networkId) {
     if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
         var dspIds = mappings[networkId];
@@ -84,6 +88,23 @@ function sendAdServer(mappingsAdServers, attrs, networkId, publisherId) {
                             break;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+function addSyncScriptTag(mappings, urls, networkId) {
+    if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
+        var dspIds = mappings[networkId];
+        if (dspIds instanceof Array) {
+            for (var i = 0; i < dspIds.length; i++) {
+                var dspId = dspIds[i];
+                if (typeof urls[dspId] !== 'undefined' && shouldAddScriptTag(dspId)) {
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = urls[dspId];
+                    document.body.appendChild(script);
                 }
             }
         }
@@ -137,9 +158,20 @@ var mappingsAdServers = [
         ]
     }
 }];
+// Sync Script Tags
+var mappingsSyncScriptTag = {
+    // TVer
+    '26': [
+        '10'  // MediaMath
+    ]
+};
+var syncScriptUrls = {
+    '10' : 'https://pixel.mathtag.com/sync/js?exsync=https%3A%2F%2Fsync.rfp.fout.jp%2Fmap%3Fdsp_id%3D10%26uid%3D%5BMM_UUID%5D'
+};
 
 sendDSP(mappings, attrs, networkId);
 sendAdServer(mappingsAdServers, attrs, networkId, publisherId);
+addSyncScriptTag(mappingsSyncScriptTag, syncScriptUrls, networkId);
 
         </script>
     </body>
