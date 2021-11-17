@@ -51,10 +51,6 @@ function probability(i) {
     return Math.random() * 100 < i;
 }
 
-function shouldAddScriptTag(dspId) {
-    return dspId !== '10' || probability(30);
-}
-
 function sendDSP(mappings, attrs, networkId) {
     if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
         var dspIds = mappings[networkId];
@@ -100,7 +96,7 @@ function addSyncScriptTag(mappings, urls, networkId) {
         if (dspIds instanceof Array) {
             for (var i = 0; i < dspIds.length; i++) {
                 var dspId = dspIds[i];
-                if (typeof urls[dspId] !== 'undefined' && shouldAddScriptTag(dspId)) {
+                if (typeof urls[dspId] !== 'undefined') {
                     var script = document.createElement('script');
                     script.type = 'text/javascript';
                     script.src = urls[dspId];
