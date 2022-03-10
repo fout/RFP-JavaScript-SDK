@@ -51,7 +51,7 @@ function probability(i) {
     return Math.random() * 100 < i;
 }
 
-var universeAdsSyncRatio = 1;
+var universeAdsSyncRatio = 30;
 
 function shouldSendDSP(dspId) {
     return dspId !== '11' || probability(universeAdsSyncRatio);
