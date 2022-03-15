@@ -51,12 +51,6 @@ function probability(i) {
     return Math.random() * 100 < i;
 }
 
-var universeAdsSyncRatio = 30;
-
-function shouldSendDSP(dspId) {
-    return dspId !== '11' || probability(universeAdsSyncRatio);
-}
-
 function sendDSP(mappings, attrs, networkId) {
     if (typeof networkId !== 'undefined' && Object.prototype.hasOwnProperty.call(mappings, networkId)) {
         var dspIds = mappings[networkId];
@@ -64,9 +58,7 @@ function sendDSP(mappings, attrs, networkId) {
             for (var i = 0; i < dspIds.length; i++) {
                 var dspId = dspIds[i];
                 if (typeof attrs['r-sd-' + dspId] === 'undefined') {
-                    if (shouldSendDSP(dspId)) {
-                        sendBeaconRequest('https://sync.rfp.fout.jp/sync?dsp_id=' + dspId);
-                    }
+                    sendBeaconRequest('https://sync.rfp.fout.jp/sync?dsp_id=' + dspId);
                 }
             }
         }
