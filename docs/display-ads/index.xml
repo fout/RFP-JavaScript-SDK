@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ディスプレイ広告 on RFP-JavaScript-SDK Docs</title>
     <link>https://fout.github.io/RFP-JavaScript-SDK/display-ads/</link>
     <description>Recent content in ディスプレイ広告 on RFP-JavaScript-SDK Docs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
-    
-	<atom:link href="https://fout.github.io/RFP-JavaScript-SDK/display-ads/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>ja</language><atom:link href="https://fout.github.io/RFP-JavaScript-SDK/display-ads/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started</title>
       <link>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/</link>

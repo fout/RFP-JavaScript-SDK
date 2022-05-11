@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.98.0" />
     <meta name="description" content="">
 
 
@@ -13,19 +13,19 @@
     <title>Customized implementation :: RFP-JavaScript-SDK Docs</title>
     
     
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652164405" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652252586" rel="stylesheet">
     
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652164405" rel="stylesheet">
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652252586" rel="stylesheet">
     
 
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652252586"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652164405"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652252586"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652252586"></script>
 <script type="text/javascript">
     
         var baseurl = "\/RFP-JavaScript-SDK\/en";
     
 </script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652252586"></script>
 
     
   </div>
@@ -77,7 +77,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item
         parent
         
         
@@ -242,7 +242,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item
         
         
         
@@ -264,7 +264,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item
         
         
         
@@ -395,22 +395,20 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#create-an-instance">Create an instance</a></li>
-<li><a href="#sending-ads-request">Sending ads request</a></li>
-<li><a href="#receiving-ads-content">Receiving ads content</a></li>
-<li><a href="#ads-display">Ads display</a></li>
-<li><a href="#sending-notification-of-ads-impression">Sending notification of ads impression</a></li>
-<li><a href="#additional-loading">Additional Loading</a></li>
-<li><a href="#example-of-implementation">Example of implementation</a></li>
-<li><a href="#attention">Attention</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-an-instance">Create an instance</a></li>
+        <li><a href="#sending-ads-request">Sending ads request</a></li>
+        <li><a href="#receiving-ads-content">Receiving ads content</a></li>
+        <li><a href="#ads-display">Ads display</a></li>
+        <li><a href="#sending-notification-of-ads-impression">Sending notification of ads impression</a></li>
+        <li><a href="#additional-loading">Additional Loading</a></li>
+        <li><a href="#example-of-implementation">Example of implementation</a></li>
+        <li><a href="#attention">Attention</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -429,123 +427,81 @@
         
 
 
-
-
 <p>Using <code>raw API</code> of JavaScript SDK, calling and rendering ads are available in the intended timing. Using the following explanation of API, extra implementation is needed.</p>
-
-<p><a name="infeed/custom/instance"></a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="create-an-instance">Create an instance</h3>
-
 <p>Create an instance of controller class to manage ads. Assigning ad spots ID is necessary to have constructor.</p>
-
-<pre><code class="language-js">var ad_controller = new RFP.InFeed.AdController({ adspot_id: 'MjQzOjIw' });
-</code></pre>
-
-<p><a name="infeed/custom/load"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ad_controller</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">AdController</span>({ <span style="color:#a6e22e">adspot_id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MjQzOjIw&#39;</span> });
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="sending-ads-request">Sending ads request</h3>
-
 <p>Sending request of ads contents, and then get the information by using <code>loadAds()</code> method. Set down callback functions showed as argument after completed.</p>
-
 <p>The First argument of callback functions is returned error object. If it works well, it returns <code>null</code>.</p>
-
-<pre><code class="language-js">var on_ad_loaded = function(error) {
-  if (error) {
-    // error handling
-  }
-
-  // ...
-};
-
-ad_controller.loadAds(on_ad_loaded);
-</code></pre>
-
-<p><a name="infeed/custom/getads"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">on_ad_loaded</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// error handling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">loadAds</span>(<span style="color:#a6e22e">on_ad_loaded</span>);
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="receiving-ads-content">Receiving ads content</h3>
-
 <p>It is possible to receive ads contents which was got from server by using <code>loadAds()</code> by using <code>getLoadedAds()</code> method.</p>
-
-<pre><code class="language-js">var ads = ad_controller.getLoadedAds();
-</code></pre>
-
-<p>A response value of <code>getLoadedAds()</code> is as below.</p>
-
-<pre><code class="language-js">[
-  {
-    &quot;title&quot;: &quot;testAd&quot;,
-    &quot;description&quot;: &quot;This is test ad.”
-    &quot;click_url&quot;: &quot;https://...&quot;,
-    &quot;main_image_url&quot;: &quot;https://...&quot;,
-    &quot;ad_id&quot;: &quot;123&quot;,
-    &quot;displayed_advertiser&quot;: &quot;Provided by test advertiser&quot;,
-    &quot;optout_click&quot;: &quot;onClick=...&quot;,
-    &quot;cta_text&quot;: &quot;Install&quot;
-  },
-  ...
-]
-</code></pre>
-
-<p>If you want to know about more details of each parameter, please refer to <a href="../1_6">clause of ads parameter</a>.</p>
-
-<p><a name="infeed/custom/display"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ads</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">getLoadedAds</span>();
+</span></span></code></pre></div><p>A response value of <code>getLoadedAds()</code> is as below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;testAd&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;This is test ad.”
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span><span style="color:#a6e22e">click_url</span><span style="color:#e6db74">&#34;: &#34;</span><span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//...&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;main_image_url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://...&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ad_id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;displayed_advertiser&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Provided by test advertiser&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;optout_click&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;onClick=...&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;cta_text&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Install&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  ...
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><p>If you want to know about more details of each parameter, please refer to <a href="../1_6">clause of ads parameter</a>.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="ads-display">Ads display</h3>
-
 <p>You can show ads recieved by using <code>getLoadedAds()</code>. It needs to manage display processing.</p>
-
-<p><a name="infeed/custom/imp"></a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="sending-notification-of-ads-impression">Sending notification of ads impression</h3>
-
 <p>After showing ads, it is necessary to notice impression by using <code>notifylmp()</code> and passing <code>ad_id</code> as parameter.</p>
-
-<pre><code class="language-js">var ad_id = ads[0].ad_id;
-ad_controller.notifyImp(ad_id);
-</code></pre>
-
-<p><a name="infeed/custom/additional_load"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ad_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ads</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">ad_id</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">notifyImp</span>(<span style="color:#a6e22e">ad_id</span>);
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="additional-loading">Additional Loading</h3>
-
 <p>You can load more ads contents in case of reloaded feed.</p>
-
 <p>Every time calling for <code>loadAd()</code> method, you can get new ads content. <code>GetLoadedAds()</code> returns all of ads had been got so far.</p>
-
 <p>It needs to use an controller instance, at first. If you keep using the only one instance, duplicate advertisements are never returned.</p>
-
-<p><a name="infeed/custom/example"></a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="example-of-implementation">Example of implementation</h3>
-
-<pre><code class="language-js">var ad_controller = new RFP.InFeed.AdController({ adspot_id: 'MjQzOjIw' });
-
-var on_ad_loaded = function(error) {
-  if (error) {
-    // Error handling
-  }
-
-  // Recieving
-  var ads = ad_controller.getLoadedAds();
-
-  ads.forEach(function(ad) {
-    // showing ads according to ads content
-    ShowAd(ad);
-
-    // Notification of Ads impression
-    var ad_id = ad.ad_id;
-    ad_controller.notifyImp(ad_id);
-  });
-};
-
-ad_controller.loadAds(on_ad_loaded);
-</code></pre>
-
-<p><a name="infeed/custom/caution"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ad_controller</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">AdController</span>({ <span style="color:#a6e22e">adspot_id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MjQzOjIw&#39;</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">on_ad_loaded</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Error handling
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Recieving
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ads</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">getLoadedAds</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ads</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ad</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// showing ads according to ads content
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ShowAd</span>(<span style="color:#a6e22e">ad</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Notification of Ads impression
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ad_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad</span>.<span style="color:#a6e22e">ad_id</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">notifyImp</span>(<span style="color:#a6e22e">ad_id</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ad_controller</span>.<span style="color:#a6e22e">loadAds</span>(<span style="color:#a6e22e">on_ad_loaded</span>);
+</span></span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="attention">Attention</h3>
-
 <ul>
 <li>Every time reading pages, get ads contents from server. Please refrain from keep using cash that you had got.</li>
 <li>Ads contents you get from server are arranged to profitable order. It is better to show superior ads at the top.</li>
@@ -770,20 +726,20 @@ ad_controller.loadAds(on_ad_loaded);
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652252586"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652252586"></script>
 
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652164405" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652164405"></script>
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652252586" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652252586"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

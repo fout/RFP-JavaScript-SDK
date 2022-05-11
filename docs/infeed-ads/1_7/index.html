@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.98.0" />
     <meta name="description" content="">
 
 
@@ -13,19 +13,19 @@
     <title>AMP への対応 :: RFP-JavaScript-SDK Docs</title>
     
     
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652164405" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652252585" rel="stylesheet">
     
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652164405" rel="stylesheet">
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652252585" rel="stylesheet">
     
 
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652252585"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652164405"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652252585"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652252585"></script>
 <script type="text/javascript">
     
         var baseurl = "\/RFP-JavaScript-SDK\/";
     
 </script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652252585"></script>
 
     
   </div>
@@ -77,7 +77,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" class="dd-item
         parent
         
         
@@ -261,7 +261,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/display-ads/" title="ディスプレイ広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/display-ads/" title="ディスプレイ広告" class="dd-item
         
         
         
@@ -331,7 +331,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/dfp/" title="DFP連携" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/dfp/" title="DFP連携" class="dd-item
         
         
         
@@ -353,7 +353,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item
         
         
         
@@ -375,7 +375,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item
         
         
         
@@ -506,18 +506,13 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#各属性の説明">各属性の説明</a>
-<ul>
-<li><a href="#data-属性で使用可能なパラメータ"><code>data</code> 属性で使用可能なパラメータ</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#各属性の説明">各属性の説明</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -536,21 +531,15 @@
         
 
 
-
-
 <p>広告掲載ページが AMP の場合、以下のような記述で広告を埋め込むことができます。</p>
-
-<pre><code class="language-html">&lt;amp-ad
-  type=&quot;rfp&quot;
-  width=&quot;320&quot;
-  height=&quot;250&quot;
-  data-adspot-id=&quot;XXXXXXXX&quot;
-  data-stylesheet-url=&quot;https://example.com/styles/ad.css&quot;&gt;
-&lt;/amp-ad&gt;
-</code></pre>
-
-<h3 id="各属性の説明">各属性の説明</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">amp-ad</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rfp&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;320&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;250&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;XXXXXXXX&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data-stylesheet-url</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://example.com/styles/ad.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">amp-ad</span>&gt;
+</span></span></code></pre></div><h3 id="各属性の説明">各属性の説明</h3>
 <table>
 <thead>
 <tr>
@@ -558,53 +547,45 @@
 <th>説明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>type</code></td>
 <td><code>rfp</code> 固定となり必須です。</td>
 </tr>
-
 <tr>
 <td><code>width</code></td>
 <td>広告ユニットの幅</td>
 </tr>
-
 <tr>
 <td><code>height</code></td>
 <td>広告ユニットの高さ</td>
 </tr>
-
 <tr>
 <td><code>data-*</code></td>
 <td>追加属性。必須のものと任意のものがあります。</td>
 </tr>
 </tbody>
 </table>
-
 <h4 id="data-属性で使用可能なパラメータ"><code>data</code> 属性で使用可能なパラメータ</h4>
-
 <table>
 <thead>
 <tr>
 <th>パラメータ名</th>
-<th align="center">必須</th>
+<th style="text-align:center">必須</th>
 <th>説明</th>
 <th>例</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td><code>data-adspot-id</code></td>
-<td align="center"><i class="fa fa-check"></i></td>
+<td style="text-align:center"><!-- raw HTML omitted --><!-- raw HTML omitted --></td>
 <td>Ad Spot ID</td>
 <td><code>XXXXXX</code></td>
 </tr>
-
 <tr>
 <td><code>data-stylesheet-url</code></td>
-<td align="center"></td>
+<td style="text-align:center"></td>
 <td>広告に適用するスタイルシートの URL</td>
 <td><code>https://example.com/styles/ad.css</code></td>
 </tr>
@@ -910,20 +891,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652252585"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652252585"></script>
 
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652164405" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652164405"></script>
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652252585" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652252585"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

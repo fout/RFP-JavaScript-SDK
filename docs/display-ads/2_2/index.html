@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.98.0" />
     <meta name="description" content="">
 
 
@@ -13,19 +13,19 @@
     <title>広告リクエストの遅延評価 :: RFP-JavaScript-SDK Docs</title>
     
     
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652164405" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1652252585" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652252585" rel="stylesheet">
     
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652164405" rel="stylesheet">
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652252585" rel="stylesheet">
     
 
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652252585"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652164405"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652252585"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652252585"></script>
 <script type="text/javascript">
     
         var baseurl = "\/RFP-JavaScript-SDK\/";
     
 </script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652252585"></script>
 
     
   </div>
@@ -77,7 +77,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" class="dd-item
         
         
         
@@ -261,7 +261,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/display-ads/" title="ディスプレイ広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/display-ads/" title="ディスプレイ広告" class="dd-item
         parent
         
         
@@ -331,7 +331,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/dfp/" title="DFP連携" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/dfp/" title="DFP連携" class="dd-item
         
         
         
@@ -353,7 +353,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item
         
         
         
@@ -375,7 +375,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item
         
         
         
@@ -493,7 +493,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -513,17 +513,12 @@
 
 <p>通常、広告の取得はページ読み込み時、または読み込み完了時に行われます。
 この広告の取得を広告表示位置へスクロールするまで遅らせることができます。</p>
-
 <p>このオプションはデフォルトでは無効になっています。</p>
-
 <p>タグ発行画面にて <strong>「広告表示まで広告リクエストを遅延させる」</strong> を有効にしてください。</p>
-
 <p>以下のような呼び出しタグが発行されます。</p>
-
-<pre><code class="language-html">&lt;script src=&quot;https://js.rfp.fout.jp/rfp-display.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;RFP.Display.Default.lazyLoading(document.getElementById('RFP-広告枠ID'))&lt;/script&gt;
-</code></pre>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://js.rfp.fout.jp/rfp-display.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;<span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">Display</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">lazyLoading</span>(document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;RFP-広告枠ID&#39;</span>))&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div>
 
 <footer class=" footline" >
 	
@@ -826,20 +821,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652252585"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1652252585"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652252585"></script>
 
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652164405" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652164405"></script>
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652252585" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652252585"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.98.0" />
     <meta name="description" content="">
 
 
@@ -13,19 +13,19 @@
     <title>Shortening of the title of ads and description :: RFP-JavaScript-SDK Docs</title>
     
     
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652164405" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652252586" rel="stylesheet">
     
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652164405" rel="stylesheet">
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652252586" rel="stylesheet">
     
 
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652252586"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652164405"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652252586"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652252586"></script>
 <script type="text/javascript">
     
         var baseurl = "\/RFP-JavaScript-SDK\/en";
     
 </script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652252586"></script>
 
     
   </div>
@@ -77,7 +77,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item
         parent
         
         
@@ -242,7 +242,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item
         
         
         
@@ -264,7 +264,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item
         
         
         
@@ -395,15 +395,13 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#editing-by-callback-functions">Editing by callback functions</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#editing-by-callback-functions">Editing by callback functions</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -422,42 +420,34 @@
         
 
 
-
-
 <p>If you configured at admin UI, you can reduce ad title, explanation and advertiser’s name in order to optimize for each media. Please refer to the UI manual for details.</p>
-
 <h3 id="editing-by-callback-functions">Editing by callback functions</h3>
-
 <p>Giving the callback functions allows you to adjust the length of the string in your optional manner. Callback functions will be called right before displaying ads. The content of ads and location will be given as an argument. At this point, you can describe the process to edit the content. And also, you can edit the number of characters of item according to the position. Callback functions should be given to <code>before_render</code> option. This <code>before_render</code> option overwrites length configurations of admin UI.</p>
-
 <p>The following, place <code>[PR]</code> at the head of title. The number of characters of ad spots A should be within 30, and ad spots B should be within 40 including ellipses at the end of sentence.</p>
-
-<pre><code class="language-js">RFP.InFeed.Default.run({
-  before_render: function(ad_info, placement_info) {
-
-    // Insert `[PR]` at the head of the title.
-    ad_info.title = '[PR] ' + ad_info.title;
-
-    // Assign the maximum length of description for each ad spots.
-    var desc_max_len = 30;
-    if (placement_info.adspot_id === 'ADSPOT_A') {
-      desc_max_len = 30;
-    } else if (placement_info.adspot_id === 'ADSPOT_B') {
-      desc_max_len = 40;
-    }
-
-    // Keep the number of characters of description within maximum length, and add ellipses at the end of text
-    if (ad_info.description.length &gt; desc_max_len) {
-      ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
-    }
-
-    // Return the edit result
-    return ad_info;
-  }
-});
-</code></pre>
-
-<ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">before_render</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ad_info</span>, <span style="color:#a6e22e">placement_info</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Insert `[PR]` at the head of the title.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[PR] &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">title</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Assign the maximum length of description for each ad spots.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">placement_info</span>.<span style="color:#a6e22e">adspot_id</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;ADSPOT_A&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">placement_info</span>.<span style="color:#a6e22e">adspot_id</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;ADSPOT_B&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Keep the number of characters of description within maximum length, and add ellipses at the end of text
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">desc_max_len</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">substr</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;…&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Return the edit result
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ad_info</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><ul>
 <li>Object of ads content will be given for the first argument of <code>before_render</code>. Please refer to <a href="../1_6">ads parameter for object’s property</a>.</li>
 <li>Object of placement position will be given for the second argument of <code>before_render</code>. Object’s property is <code>adspot_id</code> (ad spots ID).</li>
 <li>As for callback functions, the edited contents of ads object should necessarily be given back by <code>return</code>.</li>
@@ -682,20 +672,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652252586"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652252586"></script>
 
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652164405" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652164405"></script>
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652252586" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652252586"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

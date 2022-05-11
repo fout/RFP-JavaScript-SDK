@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.98.0" />
     <meta name="description" content="">
 
 
@@ -13,19 +13,19 @@
     <title>For Using DFP (DoubleClick for Publisher) :: RFP-JavaScript-SDK Docs</title>
     
     
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1652164405" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652164405" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1652252586" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1652252586" rel="stylesheet">
     
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652164405" rel="stylesheet">
+      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1652252586" rel="stylesheet">
     
 
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1652252586"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -54,14 +54,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652164405"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1652252586"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1652252586"></script>
 <script type="text/javascript">
     
         var baseurl = "\/RFP-JavaScript-SDK\/en";
     
 </script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652164405"></script>
+<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1652252586"></script>
 
     
   </div>
@@ -77,7 +77,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/infeed-ads/" title="In-Feed Advertisement" class="dd-item
         
         
         
@@ -242,7 +242,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/dfp/" title="For Using DFP (DoubleClick for Publisher)" class="dd-item
         parent
         active
         
@@ -264,7 +264,7 @@
  
   
     
-    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item 
+    <li data-nav-id="/RFP-JavaScript-SDK/en/namespace/" title="Namespace" class="dd-item
         
         
         
@@ -389,14 +389,11 @@
                     <div class="progress">
     <div class="wrapper">
 <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#in-case-of-nonsynchronous-tags">In case of nonsynchronous tags</a></li>
-<li><a href="#in-case-of-synchronized-tags">In case of synchronized tags</a></li>
-<li><a href="#using-template-from-admin-ui">Using template from Admin UI</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#in-case-of-nonsynchronous-tags">In case of nonsynchronous tags</a></li>
+    <li><a href="#in-case-of-synchronized-tags">In case of synchronized tags</a></li>
+    <li><a href="#using-template-from-admin-ui">Using template from Admin UI</a></li>
+  </ul>
 </nav>
     </div>
 </div>
@@ -415,137 +412,111 @@
         
 
 
-
-
 <p>It is possible to deliver through DFP.
 Insert tags you used, because how to implemented tags are different; whether tags are synchronized or not.</p>
-
-<p><a name="dfp/async_tag"></a></p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="in-case-of-nonsynchronous-tags">In case of nonsynchronous tags</h2>
-
 <ul>
 <li>Add creatives to the order you want, and set the type of creatives <code>third party</code>.</li>
-<li>Insert RFP JavaScript Tag as Creative.
-
-<ul>
+<li>Insert RFP JavaScript Tag as Creative.</li>
 <li>Insert JavaScript tags, ads unit template and, empty element that assigns display placement of ads.</li>
 <li>In addition, it needs to insert CSS for display.</li>
 <li>Insert click macro of DFP. Insert it accurately, and then it is possible to measure screen transitions and the clicks.</li>
 <li>You must implement template to tags if you using DFP click macro.</li>
-</ul></li>
 </ul>
-
-<pre><code class="language-html">&lt;!--  About reading CSS. It needs to customize. --&gt;
-&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://yourdomain/sample.css&quot;&gt;
-
-&lt;!-- Template od ads unit --&gt;
-&lt;script type=&quot;text/rfp-infeed-template&quot; data-adspot-id=&quot;NzYzOjEyMg&quot;&gt;
-&lt;div class=&quot;article&quot;&gt;
-  &lt;div class=&quot;contents&quot;&gt;
-    &lt;!-- Insert click macro of DFP, and then write down click URL of RFP just beneath of click macro of DFP. --&gt;
-    &lt;a href=&quot;%%CLICK_URL_UNESC%%{{click_url}}&quot; target=&quot;_blank&quot;&gt;
-      &lt;h3&gt;{{title}}&lt;/h3&gt;
-      &lt;p&gt;{{description}}&lt;/p&gt;
-      &lt;span class=&quot;source&quot;&gt;{{displayed_advertiser}}&lt;/span&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;/script&gt;
-
-&lt;!-- Assigning display location of ads --&gt;
-&lt;div data-rfp-adspot-id=&quot;NzYzOjEyMg&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
-
-&lt;!-- Calling for ads script. --&gt;　
-&lt;script src=&quot;https://js.rfp.fout.jp/rfp-infeed.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-RFP.InFeed.Default.run({
-  before_render:function(ad_info, placement_info) {
-    // You must implement this step in order to connect DFP macro.
-    ad_info.click_url = encodeURIComponent(ad_info.click_url);
-
-    // Please respond as necessary to round up the explanation.
-    // If the advertisement frame size is fixed, it is recommended that round-up processing be implemented, as long characters may cut off.
-    var desc_max_len = 30;
-    if (ad_info.description.length &gt; desc_max_len) {
-      ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
-    }
-
-    return ad_info;
-  }
-});
-&lt;/script&gt;
-</code></pre>
-
-<p>It needs to read a CSS additionally because of displaying ads in iframe.</p>
-
-<p><a name="dfp/sync_tag"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!--  About reading CSS. It needs to customize. --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://yourdomain/sample.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Template od ads unit --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/rfp-infeed-template&#34;</span> <span style="color:#a6e22e">data-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NzYzOjEyMg&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;article&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contents&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--</span> <span style="color:#a6e22e">Insert</span> <span style="color:#a6e22e">click</span> <span style="color:#a6e22e">macro</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">DFP</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">then</span> <span style="color:#a6e22e">write</span> <span style="color:#a6e22e">down</span> <span style="color:#a6e22e">click</span> <span style="color:#a6e22e">URL</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">RFP</span> <span style="color:#a6e22e">just</span> <span style="color:#a6e22e">beneath</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">click</span> <span style="color:#a6e22e">macro</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">DFP</span>. <span style="color:#f92672">--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%%CLICK_URL_UNESC%%{{click_url}}&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h3</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">title</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h3&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">description</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">span</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;source&#34;</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">displayed_advertiser</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/a&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Assigning display location of ads --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-rfp-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NzYzOjEyMg&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display:none&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Calling for ads script. --&gt;</span>　
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://js.rfp.fout.jp/rfp-infeed.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">before_render</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ad_info</span>, <span style="color:#a6e22e">placement_info</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// You must implement this step in order to connect DFP macro.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span> <span style="color:#f92672">=</span> encodeURIComponent(<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Please respond as necessary to round up the explanation.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// If the advertisement frame size is fixed, it is recommended that round-up processing be implemented, as long characters may cut off.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">desc_max_len</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">substr</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;…&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ad_info</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>It needs to read a CSS additionally because of displaying ads in iframe.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="in-case-of-synchronized-tags">In case of synchronized tags</h2>
-
 <ul>
 <li>Add creatives to the order you want, and set the type of creatives <code>Tthird party</code>.</li>
-<li>Insert JavaScript of RFP as creative.
-
-<ul>
+<li>Insert JavaScript of RFP as creative.</li>
 <li>Insert JavaScript such as advertisement unit template, empty element that assigns display placement of advertisement.</li>
 <li>Insert click macro of DFP. Insert it accurately, and then it is possible to measure screen transitions and clicks.</li>
 <li>You must implement template to tags if you using DFP click macro.</li>
-</ul></li>
 </ul>
-
-<pre><code class="language-html">&lt;!-- Template of ads units. --&gt;
-&lt;script type=&quot;text/rfp-infeed-template&quot; data-adspot-id=&quot;NzYzOjEyMg&quot;&gt;
-&lt;div class=&quot;article&quot;&gt;
-  &lt;div class=&quot;contents&quot;&gt;
-    &lt;!-- Insert click macro of DFP, then put click URL of RFP right after --&gt;
-    &lt;a href=&quot;%%CLICK_URL_UNESC%%{{click_url}}&quot; target=&quot;_blank&quot;&gt;
-      &lt;h3&gt;{{title}}&lt;/h3&gt;
-      &lt;p&gt;{{description}}&lt;/p&gt;
-      &lt;span class=&quot;source&quot;&gt;{{displayed_advertiser}}&lt;/span&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;/script&gt;
-
-&lt;!-- Assigning display placement of ads. --&gt;
-&lt;div data-rfp-adspot-id=&quot;NzYzOjEyMg&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
-
-&lt;!-- Calling for ads script --&gt;
-&lt;script src=&quot;https://js.rfp.fout.jp/rfp-infeed.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-RFP.InFeed.Default.run({
-  before_render:function(ad_info, placement_info) {
-    // You must implement this step in order to connect DFP macro.
-    ad_info.click_url = encodeURIComponent(ad_info.click_url);
-
-    // Please respond as necessary to round up the explanation.
-    // If the advertisement frame size is fixed, it is recommended that round-up processing be implemented, as long characters may cut off.
-    var desc_max_len = 30;
-    if (ad_info.description.length &gt; desc_max_len) {
-      ad_info.description = ad_info.description.substr(0, desc_max_len - 1) + '…';
-    }
-
-    return ad_info;
-  }
-});
-&lt;/script&gt;
-</code></pre>
-
-<p>If you use synchronized tags, it doesn’t need to call for style sheets.</p>
-
-<p><a name="dfp/web_template"></a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Template of ads units. --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/rfp-infeed-template&#34;</span> <span style="color:#a6e22e">data-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NzYzOjEyMg&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;article&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;contents&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--</span> <span style="color:#a6e22e">Insert</span> <span style="color:#a6e22e">click</span> <span style="color:#a6e22e">macro</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">DFP</span>, <span style="color:#a6e22e">then</span> <span style="color:#a6e22e">put</span> <span style="color:#a6e22e">click</span> <span style="color:#a6e22e">URL</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">RFP</span> <span style="color:#a6e22e">right</span> <span style="color:#a6e22e">after</span> <span style="color:#f92672">--&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%%CLICK_URL_UNESC%%{{click_url}}&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h3</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">title</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h3&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">description</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">span</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;source&#34;</span><span style="color:#f92672">&gt;</span>{{<span style="color:#a6e22e">displayed_advertiser</span>}}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/span&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/a&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Assigning display placement of ads. --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">data-rfp-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NzYzOjEyMg&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display:none&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- Calling for ads script --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://js.rfp.fout.jp/rfp-infeed.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">before_render</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ad_info</span>, <span style="color:#a6e22e">placement_info</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// You must implement this step in order to connect DFP macro.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span> <span style="color:#f92672">=</span> encodeURIComponent(<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Please respond as necessary to round up the explanation.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// If the advertisement frame size is fixed, it is recommended that round-up processing be implemented, as long characters may cut off.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">desc_max_len</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">description</span>.<span style="color:#a6e22e">substr</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">desc_max_len</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;…&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ad_info</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>If you use synchronized tags, it doesn’t need to call for style sheets.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h2 id="using-template-from-admin-ui">Using template from Admin UI</h2>
-
 <p>If you use template which draft from Admin UI, dfp click macro would not work correctly. You should use this only if you does not need to measure clicks by DFP.</p>
-
 <p>In this case, the lines below must be removed.</p>
-
-<pre><code class="language-js">// You must implement this step in order to connect DFP macro.
-ad_info.click_url = encodeURIComponent(ad_info.click_url);
-</code></pre>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// You must implement this step in order to connect DFP macro.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span> <span style="color:#f92672">=</span> encodeURIComponent(<span style="color:#a6e22e">ad_info</span>.<span style="color:#a6e22e">click_url</span>);
+</span></span></code></pre></div>
 
 <footer class=" footline" >
 	
@@ -763,20 +734,20 @@ ad_info.click_url = encodeURIComponent(ad_info.click_url);
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1652252586"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1652164405"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652164405"></script>
+    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/learn.js?1652252586"></script>
+    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1652252586"></script>
 
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652164405" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652164405"></script>
+    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1652252586" type="text/css" rel="stylesheet" />
+    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1652252586"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

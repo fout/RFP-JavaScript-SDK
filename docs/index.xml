@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TOP on RFP-JavaScript-SDK Docs</title>
     <link>https://fout.github.io/RFP-JavaScript-SDK/</link>
     <description>Recent content in TOP on RFP-JavaScript-SDK Docs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language>
-    
-	<atom:link href="https://fout.github.io/RFP-JavaScript-SDK/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>ja</language><atom:link href="https://fout.github.io/RFP-JavaScript-SDK/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting Started</title>
       <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</link>
@@ -70,7 +66,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</guid>
-      <description>広告掲載ページが AMP の場合、以下のような記述で広告を埋め込むことができます。 &amp;lt;amp-ad type=&amp;quot;rfp&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;250&amp;quot; data-adspot-id=&amp;quot;XXXXXXXX&amp;quot; data-stylesheet-url=&amp;quot;https://example.com/styles/ad.css&amp;quot;&amp;gt; &amp;lt;/amp-ad&amp;gt; 各属性の説明 属性名 説明 type rfp 固定となり必須です。 width 広告</description>
+      <description>広告掲載ページが AMP の場合、以下のような記述で広告を埋め込むことができます。 &amp;lt;amp-ad type=&amp;#34;rfp&amp;#34; width=&amp;#34;320&amp;#34; height=&amp;#34;250&amp;#34; data-adspot-id=&amp;#34;XXXXXXXX&amp;#34; data-stylesheet-url=&amp;#34;https://example.com/styles/ad.css&amp;#34;&amp;gt; &amp;lt;/amp-ad&amp;gt; 各属性の説明 属性名 説明 type rfp 固定となり必須です。 width 広告</description>
     </item>
     
     <item>
