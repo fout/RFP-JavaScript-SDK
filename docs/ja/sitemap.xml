@@ -1,171 +1,96 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_8/</loc>
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/</loc>
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/</loc>
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_2/</loc>
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/dfp/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/dfp/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/dfp/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/namespace/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/namespace/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/namespace/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/video/</loc>
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/categories/"
-                />
-  </url><url>
-    <loc>https://fout.github.io/RFP-JavaScript-SDK/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://fout.github.io/RFP-JavaScript-SDK/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://fout.github.io/RFP-JavaScript-SDK/tags/"
-                />
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_8/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_2/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/dfp/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/namespace/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/namespace/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/namespace/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/namespace/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/video/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/categories/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/categories/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/categories/index.html" />
+  </url>
+  <url>
+    <loc>https://fout.github.io/RFP-JavaScript-SDK/tags/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fout.github.io/RFP-JavaScript-SDK/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fout.github.io/RFP-JavaScript-SDK/tags/index.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fout.github.io/RFP-JavaScript-SDK/en/tags/index.html" />
   </url>
 </urlset>

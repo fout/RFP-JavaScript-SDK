@@ -2,84 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TOP on RFP-JavaScript-SDK Docs</title>
-    <link>https://fout.github.io/RFP-JavaScript-SDK/en/</link>
+    <link>https://fout.github.io/RFP-JavaScript-SDK/en/index.html</link>
     <description>Recent content in TOP on RFP-JavaScript-SDK Docs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://fout.github.io/RFP-JavaScript-SDK/en/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <atom:link href="https://fout.github.io/RFP-JavaScript-SDK/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Getting Started</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/</link>
+      <title>In-Feed Advertisement</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_1/</guid>
-      <description>Registration ad spot You set ad spots from admin UI. You need to set up your account to admin UI.
-Draft ad template You draft ad template from admin UI. Assign a placeholder by coding {{click_url}} as below and then the area is shown as ad spot.
-Please refer here to know which placeholders you can use.
-&amp;lt;div class=&amp;#34;article&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;icon&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34;{{click_url}}&amp;#34;&amp;gt; &amp;lt;img src=&amp;#34;{{main_image_url}}&amp;#34; /&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;contents&amp;#34;&amp;gt; &amp;lt;h3&amp;gt;{{title}}&amp;lt;/h3&amp;gt; &amp;lt;p&amp;gt;&amp;lt;span {{optout_click}}&amp;gt;【PR】&amp;lt;/span&amp;gt;{{description}}&amp;lt;/p&amp;gt; &amp;lt;span class=&amp;#34;source&amp;#34;&amp;gt;{{displayed_advertiser}}&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; Issuance ad tags Issue tags from admin UI.</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/index.html</guid>
+      <description> Getting Started Additional load of ads Shortening of the title of ads and description Display ads faster Customized implementation Ads parameter AMP support </description>
     </item>
-    
     <item>
-      <title>Additional load of ads</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/</link>
+      <title>For Using DFP (DoubleClick for Publisher)</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/dfp/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_2/</guid>
-      <description>Additional load of ads is available when user arrives the lower part of website and read extra feed (UI) on feed-typed website.
-Include designating element of ad position, which is the same as initial state on DOM inserted when reading extra feed. &amp;lt;div data-rfp-adspot-id=&amp;#34;MjQzOjIw&amp;#34; style=&amp;#34;display:none&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; Call for RFP.InFeed.Default.reloadAds() method of SDK after reading extra feed. Acquire and display ads cases after calling. // Example of function called after reading extra feed function onAdditionalFeedLoaded() { // .</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/dfp/index.html</guid>
+      <description>It is possible to deliver through DFP. Insert tags you used, because how to implemented tags are different; whether tags are synchronized or not.
+In case of nonsynchronous tags Add creatives to the order you want, and set the type of creatives third party. Insert RFP JavaScript Tag as Creative. Insert JavaScript tags, ads unit template and, empty element that assigns display placement of ads. In addition, it needs to insert CSS for display.</description>
     </item>
-    
     <item>
-      <title>Shortening of the title of ads and description</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/</link>
+      <title>Namespace</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/en/namespace/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/</guid>
-      <description>If you configured at admin UI, you can reduce ad title, explanation and advertiser’s name in order to optimize for each media. Please refer to the UI manual for details.
-Editing by callback functions Giving the callback functions allows you to adjust the length of the string in your optional manner. Callback functions will be called right before displaying ads. The content of ads and location will be given as an argument.</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/namespace/index.html</guid>
+      <description>It creates RFP argument just beneath window object. Use RFP argument, and then global namespace pollution never happens.</description>
     </item>
-    
-    <item>
-      <title>Display ads faster</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_4/</guid>
-      <description>You can enable immediately option to display ads faster.
-This below is an example to enable this option.
-RFP.InFeed.Default.run({ immediately: true }); The option is disabled if not specified.
-If immediately option is enabled, the ad loading and rendering process is executed immediately after RFP.InFeed.Default.run() function is called. For this reason, an ad call script must be inserted after the definition of ad template unit and elements of ad display position.</description>
-    </item>
-    
-    <item>
-      <title>Customized implementation</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_5/</guid>
-      <description>Using raw API of JavaScript SDK, calling and rendering ads are available in the intended timing. Using the following explanation of API, extra implementation is needed.
-Create an instance Create an instance of controller class to manage ads. Assigning ad spots ID is necessary to have constructor.
-var ad_controller = new RFP.InFeed.AdController({ adspot_id: &amp;#39;MjQzOjIw&amp;#39; }); Sending ads request Sending request of ads contents, and then get the information by using loadAds() method.</description>
-    </item>
-    
-    <item>
-      <title>Ads parameter</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_6/</guid>
-      <description> Parameter name Explanation Example title title words TestAd description description This is an test ad. click_url URL of transition destination when click the ads https://click.example.com/… main_image_url URL of banner style rectangular picture https://banner.dspcdn.com/… ad_id ID of ads content 123 displayed_advertiser Name of advertiser Provided by test advertiser optout_click Action on click optout onClick=... cta_text Call to Action text Install </description>
-    </item>
-    
-    <item>
-      <title>AMP</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_7/</guid>
-      <description>If your site have AMP version pages, you can use amp-ad tag for ads.
-The example below:
-&amp;lt;amp-ad type=&amp;#34;rfp&amp;#34; width=&amp;#34;320&amp;#34; height=&amp;#34;250&amp;#34; data-adspot-id=&amp;#34;XXXXXXXX&amp;#34; data-stylesheet-url=&amp;#34;https://example.com/styles/ad.css&amp;#34;&amp;gt; &amp;lt;/amp-ad&amp;gt; Attribute Explanation Attribute name Explanation type rfp (fixed, required.) width Width of ad unit. height Height of ad unit. data-* Additional attribute. Available data attributes Parameter name Required Explanation Example data-adspot-id Ad Spot ID XXXXXX data-stylesheet-url Stylesheet URL for Ads https://example.com/styles/ad.css </description>
-    </item>
-    
   </channel>
 </rss>

@@ -2,9 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DFP連携 on RFP-JavaScript-SDK Docs</title>
-    <link>https://fout.github.io/RFP-JavaScript-SDK/dfp/</link>
+    <link>https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html</link>
     <description>Recent content in DFP連携 on RFP-JavaScript-SDK Docs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://fout.github.io/RFP-JavaScript-SDK/dfp/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja</language>
+    <atom:link href="https://fout.github.io/RFP-JavaScript-SDK/dfp/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -2,99 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TOP on RFP-JavaScript-SDK Docs</title>
-    <link>https://fout.github.io/RFP-JavaScript-SDK/</link>
+    <link>https://fout.github.io/RFP-JavaScript-SDK/index.html</link>
     <description>Recent content in TOP on RFP-JavaScript-SDK Docs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja</language><atom:link href="https://fout.github.io/RFP-JavaScript-SDK/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja</language>
+    <atom:link href="https://fout.github.io/RFP-JavaScript-SDK/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Getting Started</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</link>
+      <title>インフィード広告</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_1/</guid>
-      <description>広告枠の登録 管理 UI から広告枠を登録します。事前に管理 UI へのアカウント開設が必要です。 広告テンプレートの入稿 管理 UI から広告テンプレートを入稿し</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/index.html</guid>
+      <description>Getting Started 広告の追加ロード 広告タイトル・説明文・表記広告主名の短縮 広告表示の高速化 カスタム実装 広告パラメータ AMP への対応 広告リクエストの遅延評価</description>
     </item>
-    
     <item>
-      <title>広告の追加ロード</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/</link>
+      <title>ディスプレイ広告</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/display-ads/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_2/</guid>
-      <description>フィード型のサイトなどでユーザーがサイト下部に到達した際に追加フィードを読み込むような UI の場合に、追加で広告ロードを行うことも可能です。 フィ</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/display-ads/index.html</guid>
+      <description>Getting Started 広告リクエストの遅延評価</description>
     </item>
-    
     <item>
-      <title>広告タイトル・説明文・表記広告主名の短縮</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/</link>
+      <title>DFP連携</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/</guid>
-      <description>管理画面から設定することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。詳しくは管理画</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/dfp/index.html</guid>
+      <description>DFP を利用した配信も可能です。Google サイト運営者タグの非同期タグと同期タグでそれぞれ実装方法が異なります。媒体様で実装されているタグの種</description>
     </item>
-    
     <item>
-      <title>広告表示の高速化</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/</link>
+      <title>名前空間</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/namespace/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_4/</guid>
-      <description>immediately オプションを追加することで、広告が表示されるまでの速度を速めることができます。 以下は高速化のオプションを有効にする例です。 RFP.InFeed.Default.run({ immediately: true }); このオプ</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/namespace/index.html</guid>
+      <description>RFP 変数を window オブジェクト直下に作成します。この他のグローバル汚染は一切おこないません。</description>
     </item>
-    
     <item>
-      <title>カスタム実装</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/</link>
+      <title>動画広告</title>
+      <link>https://fout.github.io/RFP-JavaScript-SDK/video/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_5/</guid>
-      <description>SDK の raw API を使用し、広告の呼び出しやレンダリングなどを任意のタイミングで行うことも可能です。以下に説明する API を用いて、媒体様による追加の実装が</description>
+      <guid>https://fout.github.io/RFP-JavaScript-SDK/video/index.html</guid>
+      <description>広告枠の広告種別に動画を設定している場合、動画広告が再生されます。 動画枠は表示のカスタマイズが行えます。以下で解説します。 動画用のパラメータ</description>
     </item>
-    
-    <item>
-      <title>広告パラメータ</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_6/</guid>
-      <description>パラメータ名 説明 例 title タイトル文言 TestAd description 説明・紹介文 テスト広告です。 click_url 広告クリック時の遷移先 URL https://click.example.com/... main_image_url バナー型の矩形画像の URL https://banner.dspcdn.com/... ad_id 広告案件の ID 123 displayed_advertiser 表記</description>
-    </item>
-    
-    <item>
-      <title>AMP への対応</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_7/</guid>
-      <description>広告掲載ページが AMP の場合、以下のような記述で広告を埋め込むことができます。 &amp;lt;amp-ad type=&amp;#34;rfp&amp;#34; width=&amp;#34;320&amp;#34; height=&amp;#34;250&amp;#34; data-adspot-id=&amp;#34;XXXXXXXX&amp;#34; data-stylesheet-url=&amp;#34;https://example.com/styles/ad.css&amp;#34;&amp;gt; &amp;lt;/amp-ad&amp;gt; 各属性の説明 属性名 説明 type rfp 固定となり必須です。 width 広告</description>
-    </item>
-    
-    <item>
-      <title>広告リクエストの遅延評価</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_8/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_8/</guid>
-      <description>通常、広告の取得はページ読み込み時、または読み込み完了時に行われます。 この広告の取得を広告表示位置へスクロールするまで遅らせることができます</description>
-    </item>
-    
-    <item>
-      <title>Getting Started</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_1/</guid>
-      <description>広告枠の登録 管理 UI から広告枠を登録します。事前に管理 UI へのアカウント開設が必要です。 広告タグの発行 管理 UI からタグを発行します。以下の様なタグ</description>
-    </item>
-    
-    <item>
-      <title>広告リクエストの遅延評価</title>
-      <link>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fout.github.io/RFP-JavaScript-SDK/display-ads/2_2/</guid>
-      <description>通常、広告の取得はページ読み込み時、または読み込み完了時に行われます。 この広告の取得を広告表示位置へスクロールするまで遅らせることができます</description>
-    </item>
-    
   </channel>
 </rss>

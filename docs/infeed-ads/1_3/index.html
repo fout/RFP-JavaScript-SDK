@@ -1,511 +1,74 @@
 <!DOCTYPE html>
-<html lang="ja" class="js csstransforms3d">
+<html lang="ja" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.111.3">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.121.2">
+    <meta name="generator" content="Relearn 5.23.2+tip">
     <meta name="description" content="">
-
-
-    <link rel="shortcut icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="広告タイトル・説明文・表記広告主名の短縮 :: RFP-JavaScript-SDK Docs">
+    <meta name="twitter:description" content="管理画面から設定することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。詳しくは管理画">
+    <meta property="og:title" content="広告タイトル・説明文・表記広告主名の短縮 :: RFP-JavaScript-SDK Docs">
+    <meta property="og:description" content="管理画面から設定することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。詳しくは管理画">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html">
+    <meta property="article:section" content="インフィード広告 :: RFP-JavaScript-SDK Docs">
+    <meta property="og:site_name" content="RFP-JavaScript-SDK Docs">
+    <title>広告タイトル・説明文・表記広告主名の短縮 :: RFP-JavaScript-SDK Docs</title>
+    <link href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" rel="alternate" hreflang="x-default">
+    <link href="https://fout.github.io/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" rel="alternate" hreflang="ja">
+    <link href="https://fout.github.io/RFP-JavaScript-SDK/en/infeed-ads/1_3/index.html" rel="alternate" hreflang="en"><link rel="shortcut icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 
-    <title>広告タイトル・説明文・表記広告主名の短縮 :: RFP-JavaScript-SDK Docs</title>
-    
-    
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/font-awesome.min.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hybrid.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/featherlight.min.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1698807628" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/hugo-theme.css?1698807628" rel="stylesheet">
-    
-      <link href="/RFP-JavaScript-SDK/css/theme-red.css?1698807628" rel="stylesheet">
-    
-
-    <script src="/RFP-JavaScript-SDK/js/jquery-2.x.min.js?1698807628"></script>
-    
-    <style type="text/css">
-      :root #header + #content > #left > #rlblock_left{ 
-          display:none !important;
-      }
-      
-    </style>
-    
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1706087970" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1706087970" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1706087970" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1706087970" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/auto-complete.css?1706087970" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1706087970" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/fonts.css?1706087970" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fonts.css?1706087970" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1706087970" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme-red.css?1706087970" rel="stylesheet" id="R-variant-style">
+    <link href="/RFP-JavaScript-SDK/css/chroma-learn.css?1706087970" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/RFP-JavaScript-SDK/css/variant.css?1706087970" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/print.css?1706087970" rel="stylesheet" media="print">
+    <link href="/RFP-JavaScript-SDK/css/ie.css?1706087970" rel="stylesheet">
+    <script src="/RFP-JavaScript-SDK/js/url.js?1706087970"></script>
+    <script src="/RFP-JavaScript-SDK/js/variant.js?1706087970"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      window.relearn = window.relearn || {};
+      window.relearn.baseUriFull='https:\/\/fout.github.io\/RFP-JavaScript-SDK/';
+      // variant stuff
+      window.relearn.themeVariantModifier='';
+      window.variants && variants.init( [ 'red' ] );
+      // translations
+      window.T_Copy_to_clipboard = `クリップボードにコピー`;
+      window.T_Copied_to_clipboard = `クリップボードにコピー!`;
+      window.T_Copy_link_to_clipboard = `リンクをクリップボードにコピー`;
+      window.T_Link_copied_to_clipboard = `リンクをクリップボードにコピーしました!`;
+      window.T_Reset_view = `ビューのリセット`;
+      window.T_View_reset = `リセットを見る`;
+      window.T_No_results_found = `"{0}" の結果が見つかりません`;
+      window.T_N_results_found = `"{0}" で {1} 件の結果が見つかりました`;
+    </script>
   </head>
-  <body class="" data-url="/RFP-JavaScript-SDK/infeed-ads/1_3/">
-    <nav id="sidebar" class="">
-
-
-
-  <div id="header-wrapper">
-    <div id="header">
-      <a id="logo" href="https://fout.github.io/RFP-JavaScript-SDK/ja">
-    RFP-JavaScript-SDK Docs
-</a>
-
-    </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fa fa-search"></i></label>
-    <input data-search-input id="search-by" type="text" placeholder="検索">
-    <span data-search-clear=""><i class="fa fa-close"></i></span>
-</div>
-
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/lunr.min.js?1698807628"></script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/auto-complete.js?1698807628"></script>
-<script type="text/javascript">
-    
-        var baseurl = "\/RFP-JavaScript-SDK\/";
-    
-</script>
-<script type="text/javascript" src="/RFP-JavaScript-SDK/js/search.js?1698807628"></script>
-
-    
-  </div>
-
-    <div class="highlightable">
-    <ul class="topics">
-
-        
-          
-          
-
-
- 
-  
-    
-    <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/" title="インフィード広告" class="dd-item
-        parent
-        
-        
-        ">
-      <a href="/RFP-JavaScript-SDK/infeed-ads/">
-          <b>1. </b>インフィード広告
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_1/" title="Getting Started" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_1/">
-        <b>1. </b>Getting Started
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_2/" title="広告の追加ロード" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_2/">
-        <b>2. </b>広告の追加ロード
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_3/" title="広告タイトル・説明文・表記広告主名の短縮" class="dd-item active">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_3/">
-        <b>3. </b>広告タイトル・説明文・表記広告主名の短縮
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_4/" title="広告表示の高速化" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_4/">
-        <b>4. </b>広告表示の高速化
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_5/" title="カスタム実装" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_5/">
-        <b>5. </b>カスタム実装
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_6/" title="広告パラメータ" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_6/">
-        <b>6. </b>広告パラメータ
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_7/" title="AMP への対応" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_7/">
-        <b>7. </b>AMP への対応
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_8/" title="広告リクエストの遅延評価" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/infeed-ads/1_8/">
-        <b>8. </b>広告リクエストの遅延評価
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
- 
-  
-    
-    <li data-nav-id="/RFP-JavaScript-SDK/display-ads/" title="ディスプレイ広告" class="dd-item
-        
-        
-        
-        ">
-      <a href="/RFP-JavaScript-SDK/display-ads/">
-          <b>2. </b>ディスプレイ広告
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/display-ads/2_1/" title="Getting Started" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/display-ads/2_1/">
-        <b>1. </b>Getting Started
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
-      <li data-nav-id="/RFP-JavaScript-SDK/display-ads/2_2/" title="広告リクエストの遅延評価" class="dd-item ">
-        <a href="/RFP-JavaScript-SDK/display-ads/2_2/">
-        <b>2. </b>広告リクエストの遅延評価
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
- 
-  
-    
-    <li data-nav-id="/RFP-JavaScript-SDK/dfp/" title="DFP連携" class="dd-item
-        
-        
-        
-        ">
-      <a href="/RFP-JavaScript-SDK/dfp/">
-          <b>3. </b>DFP連携
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
- 
-  
-    
-    <li data-nav-id="/RFP-JavaScript-SDK/namespace/" title="名前空間" class="dd-item
-        
-        
-        
-        ">
-      <a href="/RFP-JavaScript-SDK/namespace/">
-          <b>4. </b>名前空間
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-          
-
-
- 
-  
-    
-    <li data-nav-id="/RFP-JavaScript-SDK/video/" title="動画広告" class="dd-item
-        
-        
-        
-        ">
-      <a href="/RFP-JavaScript-SDK/video/">
-          <b>5. </b>動画広告
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-          
-         
-    </ul>
-
-    
-    
-
-    
-    <section id="prefooter">
-      <hr/>
-      <ul>
-      
-        <li>
-          <a class="padding">
-            <i class="fa fa-fw fa-language"></i>
-          <div class="select-style">
-            <select id="select-language" onchange="location = this.value;">
-          
-          
-          
-              
-              
-                  
-                    
-                    
-                      <option id="ja" value="/RFP-JavaScript-SDK/infeed-ads/1_3/" selected>日本語</option>
-                    
-                  
-              
-                  
-              
-          
-              
-              
-                  
-              
-                  
-                    
-                    
-                      <option id="en" value="/RFP-JavaScript-SDK/en/infeed-ads/1_3/">English</option>
-                    
-                  
-              
-          
-        </select>
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
-          <g>
-            <g id="arrow-drop-down">
-              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
-            </g>
-          </g>
-        </svg>
-        </div>
-        </a>
-        </li>
-       
-      
-      
-      </ul>
-    </section>
-    
-    <section id="footer">
-      <p>Docs are generated by using <a href="http://gohugo.io/">Hugo</a>.</p>
-<p>Theme provided by <a href="https://github.com/matcornic/hugo-theme-learn/">hugo-theme-learn</a>.</p>
-
-    </section>
-  </div>
-</nav>
-
-
-
-
-
-        <section id="body">
-        <div id="overlay"></div>
-        <div class="padding highlightable">
-              
-              <div>
-                <div id="top-bar">
-                
-                
-                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                    <span id="sidebar-toggle-span">
-                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                          <i class="fa fa-bars"></i>
-                        </a>
-                    </span>
-                  
-                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
-                  
-                  <span class="links">
-                    
-          
-          
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/RFP-JavaScript-SDK/'>TOP</a> > <a href='/RFP-JavaScript-SDK/infeed-ads/'>インフィード広告</a> > 広告タイトル・説明文・表記広告主名の短縮
-          
-         
-          
-         
-          
-           
-                  </span>
-                </div>
-                
-                    <div class="progress">
-    <div class="wrapper">
-<nav id="TableOfContents">
+  <body class="mobile-support html" data-url="/RFP-JavaScript-SDK/infeed-ads/1_3/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="メニュー (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="目次 (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"><nav class="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -514,28 +77,44 @@
     </li>
   </ul>
 </nav>
-    </div>
-</div>
-
-                
+                </div>
               </div>
             </div>
-            
-
-        
-        <div id="body-inner">
-          
-            <h1>広告タイトル・説明文・表記広告主名の短縮</h1>
-          
-
-        
-
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/RFP-JavaScript-SDK/index.html"><span itemprop="name">TOP</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/RFP-JavaScript-SDK/infeed-ads/index.html"><span itemprop="name">インフィード広告</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">広告タイトル・説明文・表記広告主名の短縮</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/RFP-JavaScript-SDK/infeed-ads/1_2/index.html" title="広告の追加ロード (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/RFP-JavaScript-SDK/infeed-ads/1_4/index.html" title="広告表示の高速化 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="更に"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="広告タイトル説明文表記広告主名の短縮">広告タイトル・説明文・表記広告主名の短縮</h1>
 
 <p>管理画面から設定することで、広告のタイトルや説明文のテキスト、表記広告主名を媒体様のサイトに合わせて短縮させることができます。詳しくは管理画面のご利用マニュアルを参照してください。</p>
 <h3 id="コールバック関数による編集">コールバック関数による編集</h3>
 <p>コールバック関数を渡すことで、媒体様の任意の方法で文字長の調整が可能です。コールバック関数は広告表示の直前に呼び出されます。引数として案件情報と設置箇所が渡されます。よって案件情報を任意に編集する処理を記述できます。また設置箇所に応じて、案件の文字数などを変動させることも可能です。コールバック関数は <code>before_render</code> オプションに渡します。管理画面上で長さの設定をしている場合でも、<code>before_render</code> が優先されます。</p>
 <p>以下は、タイトルの先頭に <code>[PR]</code> という文字列を入れる。かつ、説明文を広告枠Aでは30文字、広告枠Bでは40文字に短縮し末尾に三点リーダーを付け加える例です。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>({
+<div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">InFeed</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">before_render</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ad_info</span>, <span style="color:#a6e22e">placement_info</span>) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// タイトルの先頭に `[PR]` を挿入
@@ -557,331 +136,123 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 編集結果を return する
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ad_info</span>;
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><ul>
+</span></span><span style="display:flex;"><span>});</span></span></code></pre></div><ul>
 <li><code>before_render</code> の第一引数には広告案件のオブジェクトが渡されます。オブジェクトが持つプロパティは <a href="../1_6">広告パラメータ</a> を参照してください</li>
 <li><code>before_render</code> の第二引数には設置位置情報のオブジェクトが渡されます。オブジェクトが持つプロパティは <code>adspot_id</code> (広告枠ID) です。</li>
 <li>コールバック関数は編集結果の案件情報オブジェクトを必ず <code>return</code> で返す必要があります。</li>
 </ul>
 
+            <footer class="footline">
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+<a id="logo" href="https://fout.github.io/RFP-JavaScript-SDK/ja">
+    RFP-JavaScript-SDK Docs
+</a>
 
-<footer class=" footline" >
-	
-</footer>
-
-
-        
-        </div> 
-        
-
+        </div>
+        <div class="searchbox default-animation">
+          <i class="fas fa-search" title="検索 (CTRL+ALT+f)"></i>
+          <label class="a11y-only" for="R-search-by">検索</label>
+          <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="検索">
+          <button class="search-clear" type="button" data-search-clear="" title="検索をクリア"><i class="fas fa-times" title="検索をクリア"></i></button>
+        </div>
+        <script>
+          var contentLangs=['ja'];
+        </script>
+        <script src="/RFP-JavaScript-SDK/js/auto-complete.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.min.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.stemmer.support.min.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.multi.min.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/tinyseg.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.ja.min.js?1706087970" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/search.js?1706087970" defer></script>
       </div>
-
-    <div id="navigation">
-        
-        
-        
-        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-        
-        
-
-
-        
-            <a class="nav nav-prev" href="/RFP-JavaScript-SDK/infeed-ads/1_2/" title="広告の追加ロード"> <i class="fa fa-chevron-left"></i></a>
-        
-        
-            <a class="nav nav-next" href="/RFP-JavaScript-SDK/infeed-ads/1_4/" title="広告表示の高速化" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
-        
-    </div>
-
-    </section>
-    
-    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
-      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
-    </div>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.jquery.min.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/jquery.sticky.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/featherlight.min.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/html5shiv-printshiv.min.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/highlight.pack.js?1698807628"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/RFP-JavaScript-SDK/js/modernizr.custom.71422.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/learn.js?1698807628"></script>
-    <script src="/RFP-JavaScript-SDK/js/hugo-learn.js?1698807628"></script>
-
-    <link href="/RFP-JavaScript-SDK/mermaid/mermaid.css?1698807628" type="text/css" rel="stylesheet" />
-    <script src="/RFP-JavaScript-SDK/mermaid/mermaid.js?1698807628"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
-    
-
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="/RFP-JavaScript-SDK/index.html"><i class="fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-topics">
+          <ul class="enlarge morespace collapsible-menu">
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/index.html" class="parent "><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/index.html"><b>1. </b>インフィード広告</a><ul id="R-subsections-752b5b2f6bd18dd1fc1fe0d42b5297a5" class="morespace collapsible-menu">
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_1/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_1/index.html"><b>1. </b>Getting Started</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_2/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_2/index.html"><b>2. </b>広告の追加ロード</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" class="active"><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_3/index.html"><b>3. </b>広告タイトル・説明文・表記広告主名の短縮</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_4/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_4/index.html"><b>4. </b>広告表示の高速化</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_5/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_5/index.html"><b>5. </b>カスタム実装</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_6/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_6/index.html"><b>6. </b>広告パラメータ</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_7/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_7/index.html"><b>7. </b>AMP への対応</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/infeed-ads/1_8/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/infeed-ads/1_8/index.html"><b>8. </b>広告リクエストの遅延評価</a></li></ul></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/display-ads/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/display-ads/index.html"><b>2. </b>ディスプレイ広告</a><ul id="R-subsections-8add8955a0b45fb510cd0c7dd602ebee" class="morespace collapsible-menu">
+          <li data-nav-id="/RFP-JavaScript-SDK/display-ads/2_1/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/display-ads/2_1/index.html"><b>1. </b>Getting Started</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/display-ads/2_2/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/display-ads/2_2/index.html"><b>2. </b>広告リクエストの遅延評価</a></li></ul></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/dfp/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/dfp/index.html"><b>3. </b>DFP連携</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/namespace/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/namespace/index.html"><b>4. </b>名前空間</a></li>
+          <li data-nav-id="/RFP-JavaScript-SDK/video/index.html" class=""><a class="padding" href="/RFP-JavaScript-SDK/video/index.html"><b>5. </b>動画広告</a></li>
+          </ul>
+        </div>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showLangSwitch showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showLangSwitch">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch showLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fas fa-language fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">言語</label>
+                    <select id="R-select-language" onchange="location = baseUri + this.value;">
+                      <option id="R-ja" value="/RFP-JavaScript-SDK/infeed-ads/1_3/index.html" lang="ja" selected>日本語</option>
+                      <option id="R-en" value="/RFP-JavaScript-SDK/en/infeed-ads/1_3/index.html" lang="en">English</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fas fa-paint-brush fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">テーマ</label>
+                    <select id="R-select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                      <option id="R-red" value="red" selected>Red</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.variants && variants.markSelectedVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fas fa-history fa-fw"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">履歴クリア</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1706087970" defer></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1706087970" defer></script>
+    <script src="/RFP-JavaScript-SDK/js/theme.js?1706087970" defer></script>
   </body>
 </html>
-
