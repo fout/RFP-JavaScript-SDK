@@ -20,19 +20,19 @@
 <link rel="icon" href="https://fout.github.io/RFP-JavaScript-SDK//images/favicon.png" type="image/x-icon" />
 
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1747019314" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1747019314" rel="stylesheet"></noscript>
-    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1747019314" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1747019314" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/auto-complete.css?1747019314" rel="stylesheet"></noscript>
-    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1747019314" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/fonts.css?1747019314" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fonts.css?1747019314" rel="stylesheet"></noscript>
-    <link href="/RFP-JavaScript-SDK/css/theme.css?1747019314" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/theme-red.css?1747019314" rel="stylesheet" id="R-variant-style">
-    <link href="/RFP-JavaScript-SDK/css/chroma-learn.css?1747019314" rel="stylesheet" id="R-variant-chroma-style">
-    <link href="/RFP-JavaScript-SDK/css/variant.css?1747019314" rel="stylesheet">
-    <link href="/RFP-JavaScript-SDK/css/print.css?1747019314" rel="stylesheet" media="print">
-    <link href="/RFP-JavaScript-SDK/css/ie.css?1747019314" rel="stylesheet">
-    <script src="/RFP-JavaScript-SDK/js/url.js?1747019314"></script>
-    <script src="/RFP-JavaScript-SDK/js/variant.js?1747019314"></script>
+    <link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1765522083" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fontawesome-all.min.css?1765522083" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/nucleus.css?1765522083" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/auto-complete.css?1765522083" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/auto-complete.css?1765522083" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/perfect-scrollbar.min.css?1765522083" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/fonts.css?1765522083" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/RFP-JavaScript-SDK/css/fonts.css?1765522083" rel="stylesheet"></noscript>
+    <link href="/RFP-JavaScript-SDK/css/theme.css?1765522083" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/theme-red.css?1765522083" rel="stylesheet" id="R-variant-style">
+    <link href="/RFP-JavaScript-SDK/css/chroma-learn.css?1765522083" rel="stylesheet" id="R-variant-chroma-style">
+    <link href="/RFP-JavaScript-SDK/css/variant.css?1765522083" rel="stylesheet">
+    <link href="/RFP-JavaScript-SDK/css/print.css?1765522083" rel="stylesheet" media="print">
+    <link href="/RFP-JavaScript-SDK/css/ie.css?1765522083" rel="stylesheet">
+    <script src="/RFP-JavaScript-SDK/js/url.js?1765522083"></script>
+    <script src="/RFP-JavaScript-SDK/js/variant.js?1765522083"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -116,9 +116,11 @@
 <p>管理 UI からタグを発行します。以下の様なタグが発行されるので、ページ内の広告を表示させたい位置に挿入します。</p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RFP-広告枠ID&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ins</span> <span style="color:#a6e22e">data-rfp-adspot-id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;広告枠ID&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;display:none&#34;</span>&gt;&lt;/<span style="color:#f92672">ins</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;</span></span></code></pre></div><p>body 閉じタグ直前に挿入します。</p>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;</span></span></code></pre></div><p><code>body</code> 閉じタグ直前に挿入します。</p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://js.rfp.fout.jp/rfp-display.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;<span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">Display</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>()&lt;/<span style="color:#f92672">script</span>&gt;</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;<span style="color:#a6e22e">RFP</span>.<span style="color:#a6e22e">Display</span>.<span style="color:#a6e22e">Default</span>.<span style="color:#a6e22e">run</span>()&lt;/<span style="color:#f92672">script</span>&gt;</span></span></code></pre></div><p>複数の広告タグがある場合でも呼び出しタグは1つだけ記述すれば動作します。
+逆に複数の呼び出しがあると誤動作の原因となる可能性があるため避けてください。</p>
+
             <footer class="footline">
             </footer>
           </article>
@@ -143,13 +145,13 @@
         <script>
           var contentLangs=['ja'];
         </script>
-        <script src="/RFP-JavaScript-SDK/js/auto-complete.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.min.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.stemmer.support.min.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.multi.min.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/lunr/tinyseg.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.ja.min.js?1747019314" defer></script>
-        <script src="/RFP-JavaScript-SDK/js/search.js?1747019314" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/auto-complete.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.min.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.stemmer.support.min.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.multi.min.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/tinyseg.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/lunr/lunr.ja.min.js?1765522083" defer></script>
+        <script src="/RFP-JavaScript-SDK/js/search.js?1765522083" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -227,8 +229,8 @@
         </div>
       </div>
     </aside>
-    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1747019314" defer></script>
-    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1747019314" defer></script>
-    <script src="/RFP-JavaScript-SDK/js/theme.js?1747019314" defer></script>
+    <script src="/RFP-JavaScript-SDK/js/clipboard.min.js?1765522083" defer></script>
+    <script src="/RFP-JavaScript-SDK/js/perfect-scrollbar.min.js?1765522083" defer></script>
+    <script src="/RFP-JavaScript-SDK/js/theme.js?1765522083" defer></script>
   </body>
 </html>
